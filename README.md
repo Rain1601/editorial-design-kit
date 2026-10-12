@@ -8,6 +8,21 @@ Inspired by Anthropic’s editorial design. This is an independent project, not 
 
 ![Illustrative palette preview](docs/preview.svg)
 
+## Copy into Codex: install and use
+
+Copy the whole prompt below into Codex. It installs the skill and applies it to the page you name; replace the bracketed task before sending. If the same skill is already installed, reuse it and preserve local changes.
+
+```text
+Use $skill-installer to install this skill:
+https://github.com/Rain1601/editorial-design-kit/tree/main/skills/editorial-design
+If editorial-design is already installed, reuse it without overwriting local changes.
+Then use $editorial-design to [create or refine my page; specify its purpose and project path].
+Use Paper / Paper Night and inline 中文 / English buttons.
+Preserve real content, reading position, selected items, expanded sections and figure modes.
+Reuse my existing framework. Verify the affected interactions and deliver a working preview.
+If the newly installed skill is not detected, tell me to restart Codex and run the task again.
+```
+
 ## Live previews
 
 [Open the kit](https://rain1601.github.io/editorial-design-kit/) · [Paper report](https://rain1601.github.io/editorial-design-kit/examples/research-report.html?report=evidence-to-judgment&palette=paper) · [Paper Night report](https://rain1601.github.io/editorial-design-kit/examples/research-report.html?report=evidence-to-judgment&palette=paper-night) · [Reading queue](https://rain1601.github.io/editorial-design-kit/examples/reading-queue.html) · [Install the Codex skill](https://github.com/Rain1601/editorial-design-kit/tree/main/skills/editorial-design)

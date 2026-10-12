@@ -2,7 +2,7 @@ import {mountChoiceSwitch} from '../skills/editorial-design/assets/editorial/cho
 import {applyPalette} from '../skills/editorial-design/assets/editorial/palette-presets.mjs';
 import {Header} from '../skills/editorial-design/assets/editorial/components.mjs';
 import {componentCSS} from '../skills/editorial-design/assets/editorial/tokens.mjs?v=1';
-import {mountReportReader,normalizeReportState} from '../skills/editorial-design/assets/editorial/report-reader.mjs?v=0.22';
+import {mountReportReader,normalizeReportState} from '../skills/editorial-design/assets/editorial/report-reader.mjs?v=0.23';
 import {REPORT_SPECIMENS,getReportSpecimen} from '../skills/editorial-design/assets/editorial/report-content.mjs?v=0.22';
 import {readSession,writeSession,updateReadingRecord} from './reading-session.mjs';
 const params=new URLSearchParams(location.search),ids=REPORT_SPECIMENS.map(r=>r.id);
@@ -16,6 +16,7 @@ let reader;
 const paletteSwitch=mountChoiceSwitch(document.querySelector('#report-palette'),{choices:[{value:'paper',label:'Paper'},{value:'paper-night',label:'Paper Night'},{value:'mineral',label:'Mineral'},{value:'plum',label:'Plum'}],value:palette,onChange:changePalette});
 const host=document.querySelector('#report-host'),scrollContainer=document.scrollingElement;
 const tr=(zh,en)=>language==='zh'?zh:en;
+const languageSwitch=mountChoiceSwitch(document.querySelector('#report-language'),{choices:[{value:'zh',label:'中文'},{value:'en',label:'English'}],value:language,label:tr('语言','Language'),onChange:value=>{language=value;render();const url=new URL(location.href);url.searchParams.set('language',language);history.replaceState(null,'',url);requestAnimationFrame(()=>save(reader?.getState()));}});
 function notice(){
  document.querySelector('#report-scope').textContent=storageStatus==='unavailable'?tr('无法保存本标签页阅读位置；当前交互仍可使用。','Reading position cannot be saved in this tab; the current interactions remain available.'):storageStatus==='invalid'?tr('旧阅读记录无效，当前从报告起点开始。','The previous reading record is invalid; this report starts from its beginning.'):tr('原创报告样稿 · 阅读记录仅在本标签页保存','Authored report specimen · Reading state is stored only in this tab');
 }
@@ -31,7 +32,7 @@ function render(){
  if(!reader&&!location.hash&&report&&session.reports[report.id]){try{state=normalizeReportState(session.reports[report.id].state,report);}catch{storageStatus='invalid';delete session.reports[report.id];}}
  reader?.destroy();document.documentElement.lang=language==='zh'?'zh-CN':'en';document.body.style.cssText=componentCSS();applyAppearance();
  document.querySelector('#report-header').innerHTML=Header({brand:'EDITORIAL / EDITIONS',brandHref:new URL('../index.html',location.href).href,label:tr('辅助导航','Supporting navigation'),links:[{href:'./report-library.html',label:tr('返回报告列表','Back to reports')},{href:new URL('../index.html',location.href).href,label:tr('组件样册','Components')}]});syncThemeButton();
- document.querySelector('#palette-label').textContent=tr('配色','Palette');document.querySelector('#principles-link').textContent=tr('共用设计原则 ↗','Shared design principles ↗');paletteSwitch.setValue(palette);paletteSwitch.setLabel(tr('配色','Palette'));document.querySelector('#report-language').value=language;notice();statusLabel();
+ document.querySelector('#palette-label').textContent=tr('配色','Palette');document.querySelector('#principles-link').textContent=tr('共用设计原则 ↗','Shared design principles ↗');paletteSwitch.setValue(palette);paletteSwitch.setLabel(tr('配色','Palette'));languageSwitch.setValue(language);languageSwitch.setLabel(tr('语言','Language'));notice();statusLabel();
  if(!report){document.querySelector('#report-read-status').disabled=true;host.innerHTML=`<section class="report-reader"><h1>${tr('没有这份报告','Report not found')}</h1><p>${tr('报告身份未知，未替换为其他报告。','This report identity is unknown; no other report was substituted.')}</p><a href="./report-library.html">${tr('返回报告列表','Back to reports')}</a></section>`;return;}
  document.querySelector('#report-edition').textContent=`RESEARCH EDITION / ${String(ids.indexOf(report.id)+1).padStart(2,'0')}`;
  document.title=`${report.title[language]} · Editorial Design Kit`;
@@ -43,7 +44,6 @@ function applyAppearance(){applyPalette(document.body,palette);document.body.sty
 function changePalette(value){palette=value;applyAppearance();const url=new URL(location.href);url.searchParams.set('palette',palette);history.replaceState(null,'',url);save(reader?.getState());}
 
 document.querySelector('#report-header').addEventListener('click',e=>{if(e.target.closest('[data-action="report-theme-toggle"]'))changePalette(palette==='paper-night'?'paper':'paper-night');});
-document.querySelector('#report-language').addEventListener('change',e=>{language=e.target.value;render();save(reader?.getState());document.querySelector('#report-language').focus({preventScroll:true});});
 document.querySelector('#report-read-status').addEventListener('click',()=>{if(!reader)return;const status=session.reports[report.id]?.status==='completed'?'started':'completed';session=updateReadingRecord(session,report.id,reader.getState(),{status},ids);save();statusLabel();});
 addEventListener('pagehide',()=>save(reader?.getState()));
 render();

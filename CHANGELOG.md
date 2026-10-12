@@ -20,3 +20,9 @@
 - GitHub Pages publication workflow and bilingual preview/install links.
 - Reusable controlled choice switch; inline palette buttons in report/library/reading examples.
 - Bilingual fictional reading queue using the portable skill components.
+
+### Inline bilingual controls
+
+- Unified 中文 / English buttons across the three bilingual examples.
+- Stable chapter-relative reading restoration and retained list disclosures during translation.
+- Copy-to-Codex installation/use prompts in both README languages; skill guidance updated.

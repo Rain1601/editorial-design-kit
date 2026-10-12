@@ -20,6 +20,7 @@ export function mountQueue(doc = document) {
     const words = copy[state.language];
     doc.documentElement.lang = state.language === 'zh' ? 'zh-CN' : 'en';
     doc.querySelectorAll('[data-copy]').forEach(el => {el.textContent = words[el.dataset.copy];});
+    get('language').setAttribute('aria-label',words.language);
     get('appearance').setAttribute('aria-label',words.appearance);
     get('queue').innerHTML = ItemList({id:'reading-items', label:words.queue, selected:state.selected, items:items.map(item => ({id:item.id, title:item[state.language].title, description:item[state.language].description, meta:`${words.fictional} · ${item[state.language].kind}`}))});
     const item = items.find(item => item.id === state.selected)[state.language];
@@ -38,7 +39,7 @@ export function mountQueue(doc = document) {
     get('queue').querySelector(`[data-item-id="${state.selected}"]`).focus({preventScroll:true});
     get('announcement').textContent = `${copy[state.language].selected}: ${get('detail-title').textContent}`;
   });
-  get('language').addEventListener('change', event => {state.language = event.target.value; render();});
+  const languageSwitch=mountChoiceSwitch(get('language'),{choices:[{value:'zh',label:'中文'},{value:'en',label:'English'}],value:state.language,label:copy[state.language].language,onChange:value=>{const scroll=doc.scrollingElement,top=scroll.scrollTop,left=scroll.scrollLeft;state.language=value;render();languageSwitch.setValue(value);scroll.scrollTop=top;scroll.scrollLeft=left;}});
   const appearanceSwitch=mountChoiceSwitch(get('appearance'),{choices:[{value:'paper',label:'Paper'},{value:'paper-night',label:'Paper Night'}],value:state.appearance,onChange:next=>{
     applyPalette(doc.documentElement, appearancePalettes[next]);
     doc.documentElement.style.colorScheme = next === 'paper-night' ? 'dark' : 'light';

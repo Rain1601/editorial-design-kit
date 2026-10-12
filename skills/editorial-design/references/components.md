@@ -44,3 +44,5 @@ DataTable只有原生Tab/Enter/Space按钮基础；ArrowUp/Down选行或roving t
 ## 平铺选项切换
 
 少量常用选项用并排按钮，避免藏进下拉菜单。`choice-switch.mjs / mountChoiceSwitch(host,{choices,value,label,onChange})` 搭配 `choice-switch.css`；choices 为 `{value,label}` 数组。调用方持有状态，回调处理后调用 setValue，按钮用 aria-pressed 表示选择，原生 Tab/Enter/Space 可操作。setLabel 更新语言，destroy 清理监听和按钮。换外观只更新变量，不重建阅读器或来源面板。多选项时可换行；不要把筛选列表一律改为按钮。
+
+语言切换同样使用 choice-switch，固定“中文 / English”标签。翻译前保存阅读器 getState 的章节 ID、章内偏移、各图表模式与 details 状态；重挂后按章节偏移恢复，不能只复用全页像素坐标。列表重绘前保留展开对象 ID、筛选、排序与焦点。主题只改变量；不要为了切换语言修改或翻译来源原文。

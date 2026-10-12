@@ -6,7 +6,7 @@
   <meta name="color-scheme" content="light dark">
   <title>Reading queue · 阅读清单</title>
   <link rel="stylesheet" href="./reading-queue.css">
-  <script type="module" src="./reading-queue.mjs"></script>
+  <script type="module" src="./reading-queue.mjs?v=0.23"></script>
 <link rel="stylesheet" href="../skills/editorial-design/assets/editorial/choice-switch.css"></head>
 <body>
   <a class="skip" href="#detail" data-copy="skip">Skip to reading</a>
@@ -14,7 +14,7 @@
     <header class="masthead">
       <span class="wordmark">THE QUIET SHELF <span lang="zh-CN">静读书架</span></span>
       <div class="controls">
-        <label><span data-copy="language">Language</span><select id="language"><option value="en">English</option><option value="zh">中文</option></select></label>
+        <div class="appearance-options"><span data-copy="language">Language</span><span id="language"></span></div>
         <div class="appearance-options"><span data-copy="appearance">Appearance</span><span id="appearance"></span></div>
       </div>
     </header>

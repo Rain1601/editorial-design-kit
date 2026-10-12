@@ -10,6 +10,7 @@ let storage;try{storage=window.sessionStorage;}catch{storage={getItem(){throw Er
 const loaded=readSession(storage,ids);let session=loaded.value,storageStatus=loaded.status,frame=0;
 const params=new URLSearchParams(location.search);if(['zh','en'].includes(params.get('language')))session.appearance.language=params.get('language');if(['paper','paper-night','mineral','plum'].includes(params.get('palette')))session.appearance.palette=params.get('palette');
 const paletteSwitch=mountChoiceSwitch($('#library-palette'),{choices:[{value:'paper',label:'Paper'},{value:'paper-night',label:'Paper Night'},{value:'mineral',label:'Mineral'},{value:'plum',label:'Plum'}],value:session.appearance.palette,onChange:value=>{session.appearance.palette=value;applyPalette(document.body,value);document.body.style.setProperty('color-scheme',value==='paper-night'?'dark':'light');paletteSwitch.setValue(value);save();}});
+const languageSwitch=mountChoiceSwitch($('#library-language'),{choices:[{value:'zh',label:'中文'},{value:'en',label:'English'}],value:session.appearance.language,label:'语言 / Language',onChange:value=>{capture();const expanded=[...$('#library-results').querySelectorAll('.rl-report')].filter(el=>el.querySelector('details').open).map(el=>el.querySelector('[data-report]').dataset.report);session.appearance.language=value;labels();renderResults();for(const id of expanded){const row=$(`#open-${id}`)?.closest('.rl-report');if(row)row.querySelector('details').open=true;}restore();save();}});
 const tr=(zh,en)=>session.appearance.language==='zh'?zh:en,text=v=>v[session.appearance.language];
 const href=(report,chapter='')=>`./research-report.html?report=${encodeURIComponent(report.id)}${chapter?`#${encodeURIComponent(chapter)}`:''}`;
 function save(){const result=writeSession(storage,session,ids);if(result.status==='unavailable')storageStatus='unavailable';notice();}
@@ -21,7 +22,7 @@ function labels(){
  $('#query-label').textContent=tr('搜索报告','Search reports');$('#library-query').placeholder=tr('标题或摘要…','Title or brief…');$('#filter-label').textContent=tr('阅读状态','Reading state');$('#sort-label').textContent=tr('排列','Order');
  $('#library-filter').innerHTML=[['all',tr('全部','All')],['unread',tr('未开始','Not started')],['started',tr('阅读中','In progress')],['completed',tr('已标记读完','Marked read')]].map(([v,label])=>`<option value="${v}">${label}</option>`).join('');
  $('#library-sort').innerHTML=`<option value="date-desc">${tr('最新在前','Latest first')}</option><option value="title-asc">${tr('标题顺序','By title')}</option>`;
- $('#library-reset').textContent=tr('清除筛选','Clear filters');$('#library-query').value=session.library.query;$('#library-filter').value=session.library.filter;$('#library-sort').value=session.library.sort;paletteSwitch.setValue(session.appearance.palette);paletteSwitch.setLabel(tr('配色','Palette'));$('#library-language').value=session.appearance.language;
+ $('#library-reset').textContent=tr('清除筛选','Clear filters');$('#library-query').value=session.library.query;$('#library-filter').value=session.library.filter;$('#library-sort').value=session.library.sort;paletteSwitch.setValue(session.appearance.palette);paletteSwitch.setLabel(tr('配色','Palette'));languageSwitch.setValue(session.appearance.language);languageSwitch.setLabel(tr('语言','Language'));
  $('#library-scope').textContent=tr('原创设计报告样稿 · 阅读状态仅保留在当前标签页','Authored design report specimens · Reading state is local to this tab');$('#library-principles').textContent=tr('共用设计原则 ↗','Shared design principles ↗');notice();
 }
 function renderResults(){
@@ -41,7 +42,6 @@ $('#library-query').addEventListener('input',e=>{if(e.isComposing)return;session
 $('#library-query').addEventListener('compositionend',e=>{session.library.query=e.target.value;renderResults();save();});
 for(const [selector,key] of [['#library-filter','filter'],['#library-sort','sort']])$(selector).addEventListener('change',e=>{session.library[key]=e.target.value;renderResults();save();});
 $('#library-reset').addEventListener('click',reset);
-for(const [selector,key] of [['#library-language','language']])$(selector).addEventListener('change',e=>{capture();session.appearance[key]=e.target.value;labels();renderResults();restore();save();$(selector).focus({preventScroll:true});});
 document.querySelector('form').addEventListener('submit',e=>e.preventDefault());
 document.addEventListener('scroll',()=>{if(frame)return;frame=requestAnimationFrame(()=>{frame=0;capture();save();});},{passive:true});
 addEventListener('pagehide',()=>{capture();save();});

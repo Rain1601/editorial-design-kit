@@ -8,6 +8,21 @@
 
 ![配色示意](docs/preview.svg)
 
+## 复制给 Codex：安装并使用
+
+将下面整段复制给 Codex，发送前把方括号改成你的页面任务。Codex 会安装 skill，再用于指定页面；已安装时沿用现有版本并保留本地修改。
+
+```text
+使用 $skill-installer 安装这个 skill：
+https://github.com/Rain1601/editorial-design-kit/tree/main/skills/editorial-design
+如果 editorial-design 已安装，直接复用，不覆盖本地修改。
+然后使用 $editorial-design [创建或优化我的页面；写明页面用途和项目路径]。
+采用 Paper / Paper Night，语言用“中文 / English”平铺按钮。
+保留真实内容、阅读位置、选中对象、展开状态和图表模式。
+沿用项目现有框架，验证受影响交互，交付可运行预览。
+如果新安装的 skill 未被识别，提醒我重启 Codex 后再执行页面任务。
+```
+
 ## 在线预览
 
 [示例首页](https://rain1601.github.io/editorial-design-kit/) · [Paper 报告](https://rain1601.github.io/editorial-design-kit/examples/research-report.html?report=evidence-to-judgment&palette=paper) · [Paper Night 报告](https://rain1601.github.io/editorial-design-kit/examples/research-report.html?report=evidence-to-judgment&palette=paper-night) · [阅读清单](https://rain1601.github.io/editorial-design-kit/examples/reading-queue.html) · [安装 Codex Skill](https://github.com/Rain1601/editorial-design-kit/tree/main/skills/editorial-design)
