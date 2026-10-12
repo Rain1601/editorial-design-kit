@@ -25,7 +25,7 @@ https://github.com/Rain1601/editorial-design-kit/tree/main/skills/editorial-desi
 
 ## 在线预览
 
-[示例首页](https://rain1601.github.io/editorial-design-kit/) · [Paper 报告](https://rain1601.github.io/editorial-design-kit/examples/research-report.html?report=evidence-to-judgment&palette=paper) · [Paper Night 报告](https://rain1601.github.io/editorial-design-kit/examples/research-report.html?report=evidence-to-judgment&palette=paper-night) · [阅读清单](https://rain1601.github.io/editorial-design-kit/examples/reading-queue.html) · [安装 Codex Skill](https://github.com/Rain1601/editorial-design-kit/tree/main/skills/editorial-design)
+[示例首页](https://rain1601.github.io/editorial-design-kit/) · [Paper 报告](https://rain1601.github.io/editorial-design-kit/examples/research-report.html?report=evidence-to-judgment&palette=paper) · [Paper Night 报告](https://rain1601.github.io/editorial-design-kit/examples/research-report.html?report=evidence-to-judgment&palette=paper-night) · [Agent 任务页](https://rain1601.github.io/editorial-design-kit/examples/agent-task/agent-task.html) · [阅读清单](https://rain1601.github.io/editorial-design-kit/examples/reading-queue.html) · [安装 Codex Skill](https://github.com/Rain1601/editorial-design-kit/tree/main/skills/editorial-design)
 
 直接打开即可体验，无需启动本地服务。外观选项改为平铺按钮，切换时保留当前报告和来源面板实例。将下方安装提示复制给 Codex 即可安装。
 
@@ -99,6 +99,7 @@ python3 -m http.server 8880 --bind 127.0.0.1
 
 | 示例 | 文件 |
 |---|---|
+| Agent 任务：输入、执行、待确认与产物 | [Agent Studio](examples/agent-task/agent-task.html) |
 | 报告列表与独立阅读记录 | [报告列表](examples/report-library.html) |
 | Paper 报告 | [Paper](examples/research-report.html?report=evidence-to-judgment&palette=paper) |
 | Paper Night 报告 | [Paper Night](examples/research-report.html?report=evidence-to-judgment&palette=paper-night) |
@@ -120,3 +121,5 @@ node --test tests/*.test.mjs
 **Editorial Design Kit · 0.1.0 · MIT。** 见 [LICENSE](LICENSE) 和[授权说明](LICENSE.md)。可安装的 Skill 内也附带 LICENSE。未打包专有字体、远程视频或品牌素材。
 
 源码通过 GitHub 分发，不是 npm 包。仓库名 `editorial-design-kit`，Codex 调用名保留 `$editorial-design`。版本记录见 [CHANGELOG.md](CHANGELOG.md)。
+
+第二次全新项目验证已从 GitHub 安装 skill，并用独立 Codex 会话生成 Agent Studio。确认/取消流程及实际浏览器交互均已核验；它是本地模板演示，未接真实 Agent 后端。详见 [Agent 示例](examples/agent-task/README.md)与[验证记录](VALIDATION.md)。

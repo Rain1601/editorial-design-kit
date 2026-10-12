@@ -25,7 +25,7 @@ If the newly installed skill is not detected, tell me to restart Codex and run t
 
 ## Live previews
 
-[Open the kit](https://rain1601.github.io/editorial-design-kit/) · [Paper report](https://rain1601.github.io/editorial-design-kit/examples/research-report.html?report=evidence-to-judgment&palette=paper) · [Paper Night report](https://rain1601.github.io/editorial-design-kit/examples/research-report.html?report=evidence-to-judgment&palette=paper-night) · [Reading queue](https://rain1601.github.io/editorial-design-kit/examples/reading-queue.html) · [Install the Codex skill](https://github.com/Rain1601/editorial-design-kit/tree/main/skills/editorial-design)
+[Open the kit](https://rain1601.github.io/editorial-design-kit/) · [Paper report](https://rain1601.github.io/editorial-design-kit/examples/research-report.html?report=evidence-to-judgment&palette=paper) · [Paper Night report](https://rain1601.github.io/editorial-design-kit/examples/research-report.html?report=evidence-to-judgment&palette=paper-night) · [Agent task workspace](https://rain1601.github.io/editorial-design-kit/examples/agent-task/agent-task.html) · [Reading queue](https://rain1601.github.io/editorial-design-kit/examples/reading-queue.html) · [Install the Codex skill](https://github.com/Rain1601/editorial-design-kit/tree/main/skills/editorial-design)
 
 Open these pages directly; no local server is needed. Appearance choices are shown as inline buttons. Switching appearance preserves the current report and source panel instance. Copy the installation prompt below into Codex.
 
@@ -99,6 +99,7 @@ Open [the example index](http://127.0.0.1:8880/). If port 8880 is occupied, choo
 
 | Example | File |
 |---|---|
+| Agent task: input, execution, approval and artifacts | [Agent Studio](examples/agent-task/agent-task.html) |
 | Report library and per-report reading state | [Report library](examples/report-library.html) |
 | Paper report | [Paper](examples/research-report.html?report=evidence-to-judgment&palette=paper) |
 | Paper Night report | [Paper Night](examples/research-report.html?report=evidence-to-judgment&palette=paper-night) |
@@ -120,3 +121,5 @@ The portability check resolves local runtime/document links and verifies isolate
 **Editorial Design Kit · 0.1.0 · MIT.** See [LICENSE](LICENSE) and [license notes](LICENSE.md). The installable skill also carries LICENSE. No proprietary fonts, remote videos or brand assets are bundled.
 
 Source is distributed through GitHub; this is not an npm package. The repository name is `editorial-design-kit`; the Codex invocation remains `$editorial-design`. See [CHANGELOG.md](CHANGELOG.md).
+
+A second fresh-project trial installed the GitHub skill and used an independent Codex session to generate Agent Studio. Its approval/cancellation lifecycle and actual browser interactions were checked; this is a local template demo, not a live Agent backend. Details: [Agent example](examples/agent-task/README.md) and [validation](VALIDATION.md).

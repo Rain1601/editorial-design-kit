@@ -26,3 +26,9 @@
 - Unified 中文 / English buttons across the three bilingual examples.
 - Stable chapter-relative reading restoration and retained list disclosures during translation.
 - Copy-to-Codex installation/use prompts in both README languages; skill guidance updated.
+
+### Fresh-project Agent task example
+
+- Agent Studio: input/files, local execution log, gated approval/rejection, cancellation/restart, error recovery and downloadable artifacts.
+- Inline bilingual and Paper choices preserve task/view state; sticky controls preserve reading context.
+- Fresh GitHub installation and independent Codex-generation evidence, focused browser verification and portable lifecycle checks.
