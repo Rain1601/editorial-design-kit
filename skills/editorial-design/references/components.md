@@ -56,3 +56,7 @@ DataTable只有原生Tab/Enter/Space按钮基础；ArrowUp/Down选行或roving t
 ## Dashboard 模块
 
 `mountDashboardBoard` 支持异形卡片指针／键盘重排、取消、原模块放大、底部模块导航与回程。源码 dashboard-board.mjs / css；完整 dashboard.html 示例保留双语、Paper 外观、输入与每图模式。接入见 [dashboard.md](dashboard.md)。
+
+## 单页连续阅读
+
+章节定位、原生滚动跟随与章内位置恢复：`chapter-navigator.mjs/css`。接口和使用边界见 [navigation-scroll.md](navigation-scroll.md)，完整示例为 `scroll-story.html`。所有章节连续可读，不强制分页。

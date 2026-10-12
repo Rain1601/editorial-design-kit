@@ -50,3 +50,9 @@
 - Added a portable research Dashboard with pointer/keyboard reorder, cancellation, in-place module expansion and a bottom navigation rail.
 - Preserved original module DOM, notes, chart/data choices and layout through bilingual/Paper updates.
 - Documented independent layout state, reading return and bounded interaction scope.
+
+## Continuous reading extension — 2026-10-12
+
+- Added chapter-navigator for native continuous scroll, cancellable outline jumps and silent chapter-relative restoration.
+- Added a bilingual Paper / Paper Night single-page specimen with curved scroll illustration, annotation, comparison table and note.
+- Recorded continuous content as the default; chapter height follows content and reports do not require pagination.

@@ -105,3 +105,11 @@ Targeted local browser observations: queue moved before activity using keyboard;
 Final native keyboard verification exposed a browser mechanism: moving a focused card with insertBefore dropped focus to BODY. Locator-based key calls had refocused the handle and masked this. The shared reorder operation now restores handle focus with preventScroll after DOM movement; validation uses native successive keys without locator refocusing. This applies to every module, without sample-specific repair.
 
 After the focus repair, all 79 checks passed (9 Dashboard checks). Native Space → Left → Right → Left → Return committed queue before activity, retained focus on the queue handle and ended grab state. This replays the original focus-loss trigger with no intermediate locator refocusing.
+
+## M04 — Single-page continuous reading (2026-10-12)
+
+User preference superseded the initial pagination direction: all four chapters remain readable on one page, with natural content heights. Seven adapter checks cover identity validation, native scroll state, focus boundaries, interruption, silent restoration, reduced motion and teardown. All 73 current Node checks passed.
+
+Targeted local browser checks: all sections had hidden=false and inert=false; their English heights were about 447, 786, 487 and 522px, with no viewport-height floor. English/Paper Night preserved the connection chapter anchor (fraction 0.0000448 before, 0.0000398 after), logical open annotation and a Chinese note. Native downward scroll moved the host from 447 to 807px, advanced the curved illustration and kept focus on the appearance button. This is bounded desktop/state verification, not a full accessibility, mobile or word-level translation-anchor audit.
+
+Chapter-middle verification: returning to Chinese restored fraction 0.4582235 to 0.4584842 (within pixel rounding), retaining the annotation and note. Portability passed: 239 local references, 90 installed references, 76 identical isolated-install files; existing installation overwrite rejected.

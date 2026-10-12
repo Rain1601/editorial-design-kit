@@ -186,3 +186,9 @@ node --test tests/*.test.mjs examples/agent-task/tests/*.test.mjs
 ### Dashboard 模块交互
 
 [打开 Dashboard](https://rain1601.github.io/editorial-design-kit/examples/dashboard.html)：不等大模块、指针与键盘重排及取消、模块就地放大与底部模块导航。中文 / English、Paper / Paper Night 切换保留布局、输入与每张图的模式。便携 skill 包含完整合成研究工作台与独立 `mountDashboardBoard` 组件。[接入契约](skills/editorial-design/references/dashboard.md)。
+
+## 单页连续阅读
+
+报告在一页里连续展示足够内容，目录同步定位、图解随滚动展开、注释就地展开。所有章节始终可读；语言与配色切换保留阅读锚点、展开状态和笔记，不强制章节分页。
+
+[Paper](https://rain1601.github.io/editorial-design-kit/examples/scroll-story.html?release=0.26) · [Paper Night](https://rain1601.github.io/editorial-design-kit/examples/scroll-story.html?palette=paper-night&release=0.26) · [English](https://rain1601.github.io/editorial-design-kit/examples/scroll-story.html?language=en&release=0.26)

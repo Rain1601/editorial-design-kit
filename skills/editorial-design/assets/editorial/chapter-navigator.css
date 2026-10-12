@@ -1,0 +1,8 @@
+/* Caller supplies height. Every chapter remains readable; native wheel, touch and keyboard stay intact. */
+.edk-chapters{overflow:auto;overscroll-behavior:contain;scroll-behavior:auto;}
+.edk-chapters>[data-chapter-id]{box-sizing:border-box;display:flow-root;}
+.edk-chapters [data-chapter-heading]:focus-visible{outline:2px solid var(--accent,currentColor);outline-offset:6px;}
+/* Proximity snap is deliberately opt-in for short chapters, never forced on long reading. */
+.edk-chapters[data-chapter-snap="true"]{scroll-snap-type:y proximity;}
+.edk-chapters[data-chapter-snap="true"]>[data-chapter-id]{scroll-snap-align:start;}
+@media(prefers-reduced-motion:reduce){.edk-chapters[data-chapter-snap="true"]{scroll-snap-type:none;}}

@@ -20,6 +20,8 @@ description: Create or refine editorial-style pages and reusable UI interactions
 
 ## 交互契约
 
+- 长文与报告默认单页连续展示足够内容，目录只定位、不隐藏章节；不强制一章一屏或前后翻页。自然滚动、目录跟随与滚动图解参考 [references/navigation-scroll.md](references/navigation-scroll.md)。功能视图切换另按任务决定。
+
 - 动作靠近对象。展开、详情、媒体、图表/数据切换保留上下文；关闭证据面板恢复原阅读坐标与触发焦点。高级设置放在通用设置之后，展开只改变下面的区域。
 - 中文 / English、Paper / Paper Night 等少量常用选项默认平铺，复用受控 choice-switch；标签固定可辨识，当前选项用 aria-pressed 标识。语言切换按稳定章节 ID 与章内偏移恢复阅读，保留图表模式、展开状态与筛选；不要依赖翻译后相同的绝对页面高度。
 - 选中对象、筛选、排序、任务阶段、图表模式与阅读状态由调用方持有，换色/换语言不重建业务状态。需要持久化时明确范围，不默认写账号或报告内容。

@@ -189,3 +189,9 @@ The [report reader](https://rain1601.github.io/editorial-design-kit/examples/res
 ### Dashboard module interactions
 
 [Open Dashboard](https://rain1601.github.io/editorial-design-kit/examples/dashboard.html): unequal modules, pointer and keyboard reorder with cancellation, in-place detail expansion and a bottom module rail. 中文 / English and Paper / Paper Night retain layout, inputs and individual figure modes. The portable skill includes the complete synthetic research-workspace example and the independent `mountDashboardBoard` adapter. [Integration contract](skills/editorial-design/references/dashboard.md).
+
+## Continuous reading
+
+Keep reports on one continuous page with an outline, scroll-driven illustration and inline annotation. All sections stay readable; language and palette switches preserve the reading anchor, expansion and note. No forced chapter pagination.
+
+[Paper](https://rain1601.github.io/editorial-design-kit/examples/scroll-story.html?release=0.26) · [Paper Night](https://rain1601.github.io/editorial-design-kit/examples/scroll-story.html?palette=paper-night&release=0.26) · [English](https://rain1601.github.io/editorial-design-kit/examples/scroll-story.html?language=en&release=0.26)
