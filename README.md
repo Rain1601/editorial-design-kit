@@ -123,3 +123,9 @@ The portability check resolves local runtime/document links and verifies isolate
 Source is distributed through GitHub; this is not an npm package. The repository name is `editorial-design-kit`; the Codex invocation remains `$editorial-design`. See [CHANGELOG.md](CHANGELOG.md).
 
 A second fresh-project trial installed the GitHub skill and used an independent Codex session to generate Agent Studio. Its approval/cancellation lifecycle and actual browser interactions were checked; this is a local template demo, not a live Agent backend. Details: [Agent example](examples/agent-task/README.md) and [validation](VALIDATION.md).
+
+### Reusable Agent components
+
+Agent Studio now uses four controlled components: task input, execution log, approval request and artifacts. Import them from [agent-components.mjs](skills/editorial-design/assets/editorial/agent-components.mjs), with the scoped stylesheet and your own task state, labels and action callbacks. [Integration contract](skills/editorial-design/references/agent-tasks.md).
+
+[Try a second task](https://rain1601.github.io/editorial-design-kit/examples/agent-task/agent-task.html?task=review-plan): three approval options and three artifacts use the same components. 中文 / English and Paper / Paper Night preserve current state and reading position. The [portable starter](skills/editorial-design/assets/editorial/agent-starter.html) ships inside the installed skill. Its timer/template engine is explicitly a local demo; connect your own backend for real execution.

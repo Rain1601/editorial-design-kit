@@ -32,3 +32,9 @@
 - Agent Studio: input/files, local execution log, gated approval/rejection, cancellation/restart, error recovery and downloadable artifacts.
 - Inline bilingual and Paper choices preserve task/view state; sticky controls preserve reading context.
 - Fresh GitHub installation and independent Codex-generation evidence, focused browser verification and portable lifecycle checks.
+
+## Agent component closeout — 2026-10-12
+
+- Extracted controlled input, execution, approval and artifact modules with scoped styles.
+- Added a standalone Agent starter to the installable skill and documented state/action contracts.
+- Added an independent three-option, three-artifact demo task; preserved bilingual UI, original content and Paper palettes.

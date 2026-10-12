@@ -123,3 +123,9 @@ node --test tests/*.test.mjs
 源码通过 GitHub 分发，不是 npm 包。仓库名 `editorial-design-kit`，Codex 调用名保留 `$editorial-design`。版本记录见 [CHANGELOG.md](CHANGELOG.md)。
 
 第二次全新项目验证已从 GitHub 安装 skill，并用独立 Codex 会话生成 Agent Studio。确认/取消流程及实际浏览器交互均已核验；它是本地模板演示，未接真实 Agent 后端。详见 [Agent 示例](examples/agent-task/README.md)与[验证记录](VALIDATION.md)。
+
+### 可复用 Agent 组件
+
+Agent Studio 已改用四个受控组件：任务输入、执行记录、确认请求和产物。通过 [agent-components.mjs](skills/editorial-design/assets/editorial/agent-components.mjs) 与作用域样式接入，任务状态、文案和动作回调由调用方提供。[接入契约](skills/editorial-design/references/agent-tasks.md)。
+
+[试用另一种任务](https://rain1601.github.io/editorial-design-kit/examples/agent-task/agent-task.html?task=review-plan)：同一套组件承载三种确认选项和三份产物。中文 / English、Paper / Paper Night 切换保留当前状态和阅读位置。[可独立使用的 starter](skills/editorial-design/assets/editorial/agent-starter.html) 随 skill 安装。定时器与模板引擎仅为本地演示；真实执行须接自己的后端。

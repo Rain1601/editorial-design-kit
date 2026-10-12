@@ -19,3 +19,9 @@ TaskEngine 是本地计时器与模板演示，不调用真实 Agent、模型、
 ## 检查
 
 从仓库根目录运行 `node --test examples/agent-task/tests/*.test.mjs`。状态检查覆盖双重确认、拒绝后重启、准备/待确认/生成三个阶段取消、旧回调隔离与错误恢复。便携检查核对相对依赖、UI 入口、色卡与复用文件一致性；安装资源比对使用本仓库 skills 目录。实际浏览器核验见 [VALIDATION](../../VALIDATION.md)。
+
+## Controlled components / 受控组件
+
+The page mounts the installed skill’s four Agent components. Task-specific options and generators live in `task-config.mjs`, not in the reusable renderers. Open `agent-task.html?task=review-plan` for an independent three-option / three-artifact configuration.
+
+页面使用 skill 的四个受控组件；任务选项和模板由调用方配置。详见 [组件契约](../../skills/editorial-design/references/agent-tasks.md)。

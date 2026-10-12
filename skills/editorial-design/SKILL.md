@@ -29,7 +29,7 @@ description: Create or refine editorial-style pages and reusable UI interactions
 
 ## 选择实现资源
 
-阅读 [references/composition.md](references/composition.md)，只选当前页面需要的模式。报告内容迁移参考 [references/report-reuse.md](references/report-reuse.md)。需要现成组件时读 [references/components.md](references/components.md) 并检查相应源码。
+阅读 [references/composition.md](references/composition.md)，只选当前页面需要的模式。报告内容迁移参考 [references/report-reuse.md](references/report-reuse.md)。需要现成组件时读 [references/components.md](references/components.md) 并检查相应源码。 Agent 任务页另读 [references/agent-tasks.md](references/agent-tasks.md)，复用输入、执行、确认与产物的受控模型；演示引擎与真实执行适配分开。
 
 `assets/editorial/` 是本地 v1 组件快照：Vanilla ES modules + CSS，包含可运行 `starter.html`、命名色卡与 JSON 配置例。无需连接原仓库或付费服务。复制所需模块和其相对依赖，保持目录关系；在现有 React/Vue 项目中按既有架构适配接口，不为套用 skill 改换技术栈。文本渲染器转为框架组件时保留身份、校验与状态职责，不直接塞不可信 HTML。
 

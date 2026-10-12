@@ -9,8 +9,9 @@ export function createArtifacts(task, scope) {
   ];
 }
 export class TaskEngine {
-  constructor({schedule=(fn,ms)=>setTimeout(fn,ms), unschedule=id=>clearTimeout(id), onChange=()=>{}}={}) {
-    this.schedule=schedule; this.unschedule=unschedule; this.onChange=onChange; this.timer=null; this.epoch=0;
+  constructor({schedule=(fn,ms)=>setTimeout(fn,ms), unschedule=id=>clearTimeout(id), onChange=()=>{}, scopeIds=scopes, generate=createArtifacts}={}) {
+    if(!Array.isArray(scopeIds)||!scopeIds.length||scopeIds.some(id=>typeof id!=='string'||!id)||new Set(scopeIds).size!==scopeIds.length||typeof generate!=='function')throw new TypeError('Invalid demo task configuration');
+    this.scopeIds=[...scopeIds];this.generate=generate;this.schedule=schedule; this.unschedule=unschedule; this.onChange=onChange; this.timer=null; this.epoch=0;
     this.state={phase:'idle', input:'', files:[], scope:'', acknowledged:false, artifacts:[], logs:[], error:'', snapshot:null};
   }
   emit(){this.onChange(this.state);}
@@ -23,12 +24,12 @@ export class TaskEngine {
     this.stop();Object.assign(this.state,{phase:'preparing',error:'',scope:'',acknowledged:false,artifacts:[],logs:['started'],snapshot:{task:this.state.input.trim(),files:this.state.files.map(f=>({...f})),fail}});this.emit();
     this.later(()=>{this.state.logs.push('metadata');this.state.phase='review';this.state.logs.push('paused');this.emit();});return true;
   }
-  choose(scope){if(this.state.phase!=='review'||!scopes.includes(scope))return false;this.state.scope=scope;this.emit();return true;}
+  choose(scope){if(this.state.phase!=='review'||!this.scopeIds.includes(scope))return false;this.state.scope=scope;this.emit();return true;}
   acknowledge(value){if(this.state.phase!=='review')return false;this.state.acknowledged=!!value;this.emit();return true;}
   approve(){
-    if(this.state.phase!=='review'||!scopes.includes(this.state.scope)||!this.state.acknowledged)return false;
+    if(this.state.phase!=='review'||!this.scopeIds.includes(this.state.scope)||!this.state.acknowledged)return false;
     this.state.phase='writing';this.state.logs.push('approved');this.emit();
-    this.later(()=>{try{if(this.state.snapshot.fail)throw new Error('Demo failure');const artifacts=createArtifacts(this.state.snapshot.task,this.state.scope);this.state.artifacts=artifacts;this.state.phase='done';this.state.logs.push('finished');}catch{this.state.phase='error';this.state.error='generation';this.state.artifacts=[];this.state.logs.push('failed');}this.emit();});return true;
+    this.later(()=>{try{if(this.state.snapshot.fail)throw new Error('Demo failure');const artifacts=this.generate(this.state.snapshot.task,this.state.scope);this.state.artifacts=artifacts;this.state.phase='done';this.state.logs.push('finished');}catch{this.state.phase='error';this.state.error='generation';this.state.artifacts=[];this.state.logs.push('failed');}this.emit();});return true;
   }
   reject(){if(this.state.phase!=='review')return false;this.stop();this.state.phase='rejected';this.state.logs.push('rejected');this.emit();return true;}
   cancel(){if(!busy(this.state.phase))return false;this.stop();this.state.phase='cancelled';this.state.artifacts=[];this.state.logs.push('cancelled');this.emit();return true;}
