@@ -17,6 +17,7 @@
 | 范围控制 | scope-controls.mjs / createScopeControls | scope-controls.css |
 | 报告阅读 | report-reader.mjs / mountReportReader | report-reader.css + 来源CSS |
 | Agent 输入/执行/待确认/产物 | agent-components.mjs / mountTaskInput, mountTaskExecution, mountTaskApproval, mountTaskArtifacts | agent-components.css |
+| 展开/非模态出现/选择标记 | motion.mjs / mountDisclosureMotion, mountPresenceMotion, mountSelectionMotion；[契约](motion.md) | 宿主布局与标记样式 |
 
 源码是当前接口依据；先看目标模块的签名与校验，不能凭类名猜参数。共享依赖 components.mjs、tokens.mjs、source-excerpt.mjs已附带。报告还依赖report-content.mjs与citation-sources.mjs；后者的命名样稿引用附带的项目说明，不是业务事实。使用新报告时显式传入模型，不靠旧命名样稿补内容。
 

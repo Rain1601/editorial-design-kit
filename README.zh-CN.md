@@ -89,6 +89,10 @@ Agent Studio 已改用四个受控组件：任务输入、执行记录、确认�
 
 [试用另一种任务](https://rain1601.github.io/editorial-design-kit/examples/agent-task/agent-task.html?task=review-plan)：同一套组件承载三种确认选项和三份产物。中文 / English、Paper / Paper Night 切换保留当前状态和阅读位置。[可独立使用的 starter](skills/editorial-design/assets/editorial/agent-starter.html) 随 skill 安装。定时器与模板引擎仅为本地演示；真实执行须接自己的后端。
 
+### Motion Lab · 动态交互
+
+启动示例服务后，打开[动效样例](skills/editorial-design/assets/editorial/motion-lab.html)。三个呈现适配器分别用于自然高度展开、选中下划线移动与非模态详情进出。快速反向操作取消旧动画，减少动态时直接应用最新状态；业务状态、ARIA 控件语义及焦点回程由调用方持有。[动效接入契约](skills/editorial-design/references/motion.md)。
+
 ## 本地安装
 
 需要 Codex；安装和本地服务需 Python 3.10+，可选测试需 Node.js 18+。无 npm 依赖，不需要 `npm install`。

@@ -79,3 +79,9 @@ Targeted browser checks: delivery-review paused with zero artifacts; risk scope,
 Skill Creator quick_validate.py could not run in the local bundled Python because PyYAML is absent. This is recorded separately from the passing repository portability / installation and Node checks.
 
 Packaged default starter completed its original two-artifact approval flow in the browser; the draft retained the supplied task.
+
+## M01 — Motion Lab foundation (2026-10-12)
+
+Three independent presentation adapters now cover measured disclosure, a selection marker and non-modal presence. Caller state updates precede motion; cancellation resolves false and only the current animation applies final visibility. Each update rechecks reduced motion. Four focused Node checks cover rapid reversal, stale completion, natural-height settling, immediate reduced-motion state, measured unequal-width targets, cleanup and invalid inputs. Repository portability passed with 191 local references, 59 installed references and 64 byte-identical installed files before the README links were added.
+
+Targeted browser observations: double-click disclosure returned to hidden with aria-expanded=false; subsequent expansion remained open through English / Paper Night. Selected method and source-return record survived these switches. Marker and the selected English button both measured 46.703125px wide. Escape returned focus to the original record. The explicit reduced-motion control closed evidence immediately and detail close returned focus to the state record with hidden=true. The browser DOM inspection facade did not expose getAnimations(), so no frame-count claim is made. This is bounded behavior verification, not a full accessibility or timing audit.

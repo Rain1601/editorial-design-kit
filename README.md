@@ -92,6 +92,10 @@ Agent Studio now uses four controlled components: task input, execution log, app
 
 [Try a second task](https://rain1601.github.io/editorial-design-kit/examples/agent-task/agent-task.html?task=review-plan): three approval options and three artifacts use the same components. 中文 / English and Paper / Paper Night preserve current state and reading position. The [portable starter](skills/editorial-design/assets/editorial/agent-starter.html) ships inside the installed skill. Its timer/template engine is explicitly a local demo; connect your own backend for real execution.
 
+### Motion Lab
+
+[Open the local motion specimen](skills/editorial-design/assets/editorial/motion-lab.html) after starting the example server. Three presentation-only adapters cover measured disclosure, a moving selection underline and non-modal detail presence. Rapid reversals cancel stale transitions; reduced motion applies the latest state immediately. The caller owns business state, ARIA controls and focus return. [Motion contract](skills/editorial-design/references/motion.md).
+
 ## Install locally
 
 Requirements: Codex; Python 3.10+ for installation and local serving; Node.js 18+ for optional tests. No npm dependencies or `npm install` required.
