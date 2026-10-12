@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Reading queue · 阅读清单</title>
+  <link rel="stylesheet" href="./reading-queue.css">
+  <script type="module" src="./reading-queue.mjs"></script>
+<link rel="stylesheet" href="../skills/editorial-design/assets/editorial/choice-switch.css"></head>
+<body>
+  <a class="skip" href="#detail" data-copy="skip">Skip to reading</a>
+  <div class="page">
+    <header class="masthead">
+      <span class="wordmark">THE QUIET SHELF <span lang="zh-CN">静读书架</span></span>
+      <div class="controls">
+        <label><span data-copy="language">Language</span><select id="language"><option value="en">English</option><option value="zh">中文</option></select></label>
+        <div class="appearance-options"><span data-copy="appearance">Appearance</span><span id="appearance"></span></div>
+      </div>
+    </header>
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow" data-copy="eyebrow">A little room for attention</p>
+        <h1 id="page-title" data-copy="title">Reading queue</h1>
+        <p class="deck" data-copy="deck">Three small readings. Take one thought with you.</p>
+        <p class="specimen" data-copy="fiction">Fictional collection · All titles, authors and excerpts are invented for this demo.</p>
+      </section>
+      <div class="reading-layout">
+        <aside aria-labelledby="queue-title">
+          <div class="section-label"><h2 id="queue-title" data-copy="queue">On the shelf</h2><span>03</span></div>
+          <div id="queue"></div>
+          <p class="aside-note" data-copy="hint">Choose a title to read its short excerpt.</p>
+        </aside>
+        <article id="detail" tabindex="-1" aria-labelledby="detail-title">
+          <p id="detail-meta" class="eyebrow"></p>
+          <h2 id="detail-title"></h2>
+          <p id="detail-byline" class="byline"></p>
+          <div class="excerpt"><p id="paragraph-one"></p><p id="paragraph-two"></p></div>
+          <div class="reading-note"><h3 data-copy="thought">A thought to keep</h3><p id="detail-thought"></p></div>
+          <p class="endnote" data-copy="endnote">End of fictional excerpt</p>
+        </article>
+      </div>
+    </main>
+    <footer><span data-copy="footer">A small shelf, an unhurried pace.</span><span>EN / 中文</span></footer>
+  </div>
+  <p id="announcement" class="sr" role="status"></p>
+  <noscript>This page needs JavaScript for the reading list. 此页面需要 JavaScript 才能显示阅读清单。</noscript>
+</body>
+</html>

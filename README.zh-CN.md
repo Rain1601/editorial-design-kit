@@ -8,6 +8,12 @@
 
 ![配色示意](docs/preview.svg)
 
+## 在线预览
+
+[示例首页](https://rain1601.github.io/editorial-design-kit/) · [Paper 报告](https://rain1601.github.io/editorial-design-kit/examples/research-report.html?report=evidence-to-judgment&palette=paper) · [Paper Night 报告](https://rain1601.github.io/editorial-design-kit/examples/research-report.html?report=evidence-to-judgment&palette=paper-night) · [阅读清单](https://rain1601.github.io/editorial-design-kit/examples/reading-queue.html) · [安装 Codex Skill](https://github.com/Rain1601/editorial-design-kit/tree/main/skills/editorial-design)
+
+直接打开即可体验，无需启动本地服务。外观选项改为平铺按钮，切换时保留当前报告和来源面板实例。将下方安装提示复制给 Codex 即可安装。
+
 ## 包含什么
 
 - 自包含的 `editorial-design` Skill：设计原则、布局建议、交互契约与模板。

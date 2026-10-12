@@ -41,3 +41,9 @@ Parent browser verification: selected “A library for rain”, changed Paper Ni
 ### GitHub checks
 
 Initial main revision passed GitHub Actions portability and 34 contract tests. Final remote parity is checked after uploading this record. These checks do not establish arbitrary-content quality, full accessibility, cross-OS font parity or production research.
+
+## PK04 — Online examples and inline appearance controls (2026-10-12)
+
+Pages workflow checks the portable package and Node contracts before staging an explicit static allowlist (`index.html`, `examples`, `skills`, `docs`, README and LICENSE). Git metadata, local execution logs and private workspace files are excluded. The workflow uses GitHub Pages deployment with HTTPS and a project-relative asset tree.
+
+Paper / Paper Night and the other report palettes are directly visible as controlled buttons. The reusable mountChoiceSwitch leaves business state to its caller. The fictional bilingual reading queue is included as an additional authored example; selecting a reading and changing appearance keeps its identity. Report appearance changes retain the mounted reader and source panel. Local portability verification passed with 111 references and 47 identical installed files; the existing 34 Node checks passed. Browser checks and the final deployment result are recorded after publication.

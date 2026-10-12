@@ -1,3 +1,4 @@
+import {mountChoiceSwitch} from '../skills/editorial-design/assets/editorial/choice-switch.mjs';
 import {applyPalette} from '../skills/editorial-design/assets/editorial/palette-presets.mjs';
 import {Header} from '../skills/editorial-design/assets/editorial/components.mjs';
 import {componentCSS} from '../skills/editorial-design/assets/editorial/tokens.mjs?v=1';
@@ -12,6 +13,7 @@ const loaded=readSession(storage,ids);let session=loaded.value,storageStatus=loa
 let language=['zh','en'].includes(params.get('language'))?params.get('language'):session.appearance.language;
 let palette=['paper','paper-night','mineral','plum'].includes(params.get('palette'))?params.get('palette'):session.appearance.palette;
 let reader;
+const paletteSwitch=mountChoiceSwitch(document.querySelector('#report-palette'),{choices:[{value:'paper',label:'Paper'},{value:'paper-night',label:'Paper Night'},{value:'mineral',label:'Mineral'},{value:'plum',label:'Plum'}],value:palette,onChange:changePalette});
 const host=document.querySelector('#report-host'),scrollContainer=document.scrollingElement;
 const tr=(zh,en)=>language==='zh'?zh:en;
 function notice(){
@@ -28,8 +30,8 @@ function render(){
  let state=reader?.getState();
  if(!reader&&!location.hash&&report&&session.reports[report.id]){try{state=normalizeReportState(session.reports[report.id].state,report);}catch{storageStatus='invalid';delete session.reports[report.id];}}
  reader?.destroy();document.documentElement.lang=language==='zh'?'zh-CN':'en';document.body.style.cssText=componentCSS();applyAppearance();
- document.querySelector('#report-header').innerHTML=Header({brand:'EDITORIAL / EDITIONS',brandHref:new URL('../index.html',location.href).href,label:tr('辅助导航','Supporting navigation'),links:[{href:'./report-library.html',label:tr('返回报告列表','Back to reports')},{href:new URL('../index.html',location.href).href,label:tr('组件样册','Components')}],action:{id:'report-theme-toggle',label:tr('夜间模式','Dark mode')}});syncThemeButton();
- document.querySelector('#palette-label').textContent=tr('配色','Palette');document.querySelector('#principles-link').textContent=tr('共用设计原则 ↗','Shared design principles ↗');document.querySelector('#report-palette').value=palette;document.querySelector('#report-language').value=language;notice();statusLabel();
+ document.querySelector('#report-header').innerHTML=Header({brand:'EDITORIAL / EDITIONS',brandHref:new URL('../index.html',location.href).href,label:tr('辅助导航','Supporting navigation'),links:[{href:'./report-library.html',label:tr('返回报告列表','Back to reports')},{href:new URL('../index.html',location.href).href,label:tr('组件样册','Components')}]});syncThemeButton();
+ document.querySelector('#palette-label').textContent=tr('配色','Palette');document.querySelector('#principles-link').textContent=tr('共用设计原则 ↗','Shared design principles ↗');paletteSwitch.setValue(palette);paletteSwitch.setLabel(tr('配色','Palette'));document.querySelector('#report-language').value=language;notice();statusLabel();
  if(!report){document.querySelector('#report-read-status').disabled=true;host.innerHTML=`<section class="report-reader"><h1>${tr('没有这份报告','Report not found')}</h1><p>${tr('报告身份未知，未替换为其他报告。','This report identity is unknown; no other report was substituted.')}</p><a href="./report-library.html">${tr('返回报告列表','Back to reports')}</a></section>`;return;}
  document.querySelector('#report-edition').textContent=`RESEARCH EDITION / ${String(ids.indexOf(report.id)+1).padStart(2,'0')}`;
  document.title=`${report.title[language]} · Editorial Design Kit`;
@@ -37,9 +39,9 @@ function render(){
  if(!state&&!location.hash)save(reader.getState());
 }
 function syncThemeButton(){const button=document.querySelector('[data-action="report-theme-toggle"]');if(button){button.textContent=palette==='paper-night'?tr('日间模式','Light mode'):tr('夜间模式','Dark mode');button.setAttribute('aria-pressed',String(palette==='paper-night'));}}
-function applyAppearance(){applyPalette(document.body,palette);document.body.style.setProperty('color-scheme',palette==='paper-night'?'dark':'light');document.querySelector('#report-palette').value=palette;syncThemeButton();}
+function applyAppearance(){applyPalette(document.body,palette);document.body.style.setProperty('color-scheme',palette==='paper-night'?'dark':'light');paletteSwitch.setValue(palette);paletteSwitch.setLabel(tr('配色','Palette'));syncThemeButton();}
 function changePalette(value){palette=value;applyAppearance();const url=new URL(location.href);url.searchParams.set('palette',palette);history.replaceState(null,'',url);save(reader?.getState());}
-document.querySelector('#report-palette').addEventListener('change',e=>changePalette(e.target.value));
+
 document.querySelector('#report-header').addEventListener('click',e=>{if(e.target.closest('[data-action="report-theme-toggle"]'))changePalette(palette==='paper-night'?'paper':'paper-night');});
 document.querySelector('#report-language').addEventListener('change',e=>{language=e.target.value;render();save(reader?.getState());document.querySelector('#report-language').focus({preventScroll:true});});
 document.querySelector('#report-read-status').addEventListener('click',()=>{if(!reader)return;const status=session.reports[report.id]?.status==='completed'?'started':'completed';session=updateReadingRecord(session,report.id,reader.getState(),{status},ids);save();statusLabel();});

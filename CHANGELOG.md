@@ -14,3 +14,9 @@
 - Verified official remote installation and actual Codex use.
 - Search topics and GitHub Actions checks.
 - Generic SVG palette illustration replaces local browser screenshot for distribution.
+
+### Online examples and inline appearance choices
+
+- GitHub Pages publication workflow and bilingual preview/install links.
+- Reusable controlled choice switch; inline palette buttons in report/library/reading examples.
+- Bilingual fictional reading queue using the portable skill components.

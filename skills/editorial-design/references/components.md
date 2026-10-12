@@ -40,3 +40,7 @@
 DataTable只有原生Tab/Enter/Space按钮基础；ArrowUp/Down选行或roving tabindex由具体应用实现，按当前筛选排序后的ID操作。Accordion只接受文本与安全链接，不是任意控件插槽；高级筛选用宿主框架的受控disclosure，保留展开状态，保证通用区域位置稳定。不要把这些适配行为称为组件已经提供。
 
 来源面板可选 headerAction:{label,onClick} 提供宿主动作；mountReportReader 的 sourcePanelAction 透传。主题回调只更新变量并保持实例及阅读回程，详见 palettes.md。
+
+## 平铺选项切换
+
+少量常用选项用并排按钮，避免藏进下拉菜单。`choice-switch.mjs / mountChoiceSwitch(host,{choices,value,label,onChange})` 搭配 `choice-switch.css`；choices 为 `{value,label}` 数组。调用方持有状态，回调处理后调用 setValue，按钮用 aria-pressed 表示选择，原生 Tab/Enter/Space 可操作。setLabel 更新语言，destroy 清理监听和按钮。换外观只更新变量，不重建阅读器或来源面板。多选项时可换行；不要把筛选列表一律改为按钮。

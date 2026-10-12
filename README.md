@@ -8,6 +8,12 @@ Inspired by Anthropic’s editorial design. This is an independent project, not 
 
 ![Illustrative palette preview](docs/preview.svg)
 
+## Live previews
+
+[Open the kit](https://rain1601.github.io/editorial-design-kit/) · [Paper report](https://rain1601.github.io/editorial-design-kit/examples/research-report.html?report=evidence-to-judgment&palette=paper) · [Paper Night report](https://rain1601.github.io/editorial-design-kit/examples/research-report.html?report=evidence-to-judgment&palette=paper-night) · [Reading queue](https://rain1601.github.io/editorial-design-kit/examples/reading-queue.html) · [Install the Codex skill](https://github.com/Rain1601/editorial-design-kit/tree/main/skills/editorial-design)
+
+Open these pages directly; no local server is needed. Appearance choices are shown as inline buttons. Switching appearance preserves the current report and source panel instance. Copy the installation prompt below into Codex.
+
 ## What is included
 
 - A self-contained `editorial-design` skill: principles, composition guidance, interaction contracts and templates.
