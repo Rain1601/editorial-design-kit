@@ -182,3 +182,7 @@ node --test tests/*.test.mjs examples/agent-task/tests/*.test.mjs
 ### 动效接入实际页面
 
 [报告阅读页](https://rain1601.github.io/editorial-design-kit/examples/research-report.html?report=evidence-to-judgment) 已接入自然高度展开、图表／数据选择标记。[Agent Studio](https://rain1601.github.io/editorial-design-kit/examples/agent-task/agent-task.html?task=review-plan) 已接入执行记录与产物结构展开、确认与产物区短距离淡入，以及产物选择标记。中英文与 Paper 切换保留逻辑状态和阅读上下文。Agent 渲染组件通过 `{motion:true}` 启用，复制时一起带上依赖 motion.mjs。减少动态时直接应用最新状态。Agent 页面仍为本地模板演示，没有真实后端。
+
+### Dashboard 模块交互
+
+[打开 Dashboard](https://rain1601.github.io/editorial-design-kit/examples/dashboard.html)：不等大模块、指针与键盘重排及取消、模块就地放大与底部模块导航。中文 / English、Paper / Paper Night 切换保留布局、输入与每张图的模式。便携 skill 包含完整合成研究工作台与独立 `mountDashboardBoard` 组件。[接入契约](skills/editorial-design/references/dashboard.md)。

@@ -52,3 +52,7 @@ DataTable只有原生Tab/Enter/Space按钮基础；ArrowUp/Down选行或roving t
 ## Agent 任务页
 
 完整受控模型、动作与运行边界见 [agent-tasks.md](agent-tasks.md)。任务、请求选项与产物数量由调用方提供；组件不内置业务答案或执行后端。新 requestId 重置选择与确认，批准事件带 requestId；服务端仍校验当前阶段。语言只更新控件文案、配色只更新语义变量，保留任务身份和阅读位置。可运行 agent-starter.html 及其本地依赖演示接入，演示引擎不可当作真实 Agent 运行。
+
+## Dashboard 模块
+
+`mountDashboardBoard` 支持异形卡片指针／键盘重排、取消、原模块放大、底部模块导航与回程。源码 dashboard-board.mjs / css；完整 dashboard.html 示例保留双语、Paper 外观、输入与每图模式。接入见 [dashboard.md](dashboard.md)。

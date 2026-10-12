@@ -44,3 +44,9 @@
 - Added Motion Lab, cancellable disclosure/presence/selection adapters and native details lifecycle support.
 - Applied motion to the real report reader, reusable Agent renderers and portable starter.
 - Kept logical state independent of transitions, with immediate reduced-motion settling and non-animated restoration.
+
+## Dashboard modules — 2026-10-12
+
+- Added a portable research Dashboard with pointer/keyboard reorder, cancellation, in-place module expansion and a bottom navigation rail.
+- Preserved original module DOM, notes, chart/data choices and layout through bilingual/Paper updates.
+- Documented independent layout state, reading return and bounded interaction scope.

@@ -185,3 +185,7 @@ A second fresh-project trial installed the GitHub skill and used an independent 
 ### Motion in real pages
 
 The [report reader](https://rain1601.github.io/editorial-design-kit/examples/research-report.html?report=evidence-to-judgment) now uses natural-height disclosures and moving chart/data selection markers. [Agent Studio](https://rain1601.github.io/editorial-design-kit/examples/agent-task/agent-task.html?task=review-plan) uses expanding execution/structure sections, short presence transitions for approval and artifacts, and an artifact selection marker. Bilingual and Paper switches retain logical state and reading context. Agent renderers opt in with `{motion:true}`; copy `motion.mjs` alongside their dependencies. Reduced motion applies the latest state immediately. This remains a local template demo, without a live Agent backend.
+
+### Dashboard module interactions
+
+[Open Dashboard](https://rain1601.github.io/editorial-design-kit/examples/dashboard.html): unequal modules, pointer and keyboard reorder with cancellation, in-place detail expansion and a bottom module rail. 中文 / English and Paper / Paper Night retain layout, inputs and individual figure modes. The portable skill includes the complete synthetic research-workspace example and the independent `mountDashboardBoard` adapter. [Integration contract](skills/editorial-design/references/dashboard.md).

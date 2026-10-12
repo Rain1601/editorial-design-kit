@@ -1,0 +1,15 @@
+.edk-dashboard-board{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:20px;position:relative;align-items:start}
+.edk-dashboard-card{min-width:0;transform-origin:top left}
+.edk-dashboard-card.is-expanded{grid-column:1/-1!important;grid-row:auto!important;min-height:420px}
+.edk-dashboard-board [hidden]{display:none!important}
+.edk-dashboard-board [data-drag-handle]{touch-action:none;cursor:grab}
+.edk-dashboard-board .is-reordering [data-drag-handle]{cursor:grabbing}
+.edk-dashboard-card.is-reordering{box-shadow:0 12px 40px #0002;outline:1px solid var(--accent,#986650)}
+.edk-dashboard-placeholder{border:1px dashed var(--line,#c7c3ba);border-radius:4px;background:var(--surface-muted,transparent)}
+.edk-dashboard-tools{grid-column:1/-1;display:flex;justify-content:flex-end;grid-row:1}
+.edk-dashboard-tools button,.edk-dashboard-rail button{font:inherit;color:inherit;background:transparent;border:1px solid var(--line,#c7c3ba);border-radius:4px;padding:10px 16px;cursor:pointer}
+.edk-dashboard-rail{grid-column:1/-1;display:flex;gap:10px;overflow-x:auto;padding:8px 0;scrollbar-width:thin}
+.edk-dashboard-rail button{flex:0 0 auto;max-width:240px;text-align:left}
+.edk-dashboard-live{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+@media(max-width:700px){.edk-dashboard-board{grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.edk-dashboard-board>.edk-dashboard-card{grid-column:1/-1!important}.edk-dashboard-card.is-expanded{min-height:320px}}
+@media(prefers-reduced-motion:reduce){.edk-dashboard-card{scroll-behavior:auto}}
