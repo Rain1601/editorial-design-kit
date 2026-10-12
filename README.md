@@ -48,7 +48,7 @@ Use $skill-installer to install:
 https://github.com/Rain1601/editorial-design-kit/tree/main/skills/editorial-design
 ```
 
-Local installation and example dependency checks are covered by the portability script. Remote verification results are recorded in VALIDATION.md. [Official Codex skill documentation](https://learn.chatgpt.com/docs/build-skills).
+Verified: the official Skill Installer downloaded this repository, and a fresh Codex CLI session generated a working bilingual page using the installed skill. See [VALIDATION.md](VALIDATION.md) for the tested revision and limits. [Official Codex skill documentation](https://learn.chatgpt.com/docs/build-skills).
 
 ## Use with Codex
 

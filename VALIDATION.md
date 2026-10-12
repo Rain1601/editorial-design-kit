@@ -1,4 +1,6 @@
-# Local standalone validation · 2026-10-12
+# Validation · 2026-10-12
+
+## Initial local checks (historical, before publication)
 
 - Copied the project to /tmp/editorial-kit-isolated and served only that directory on localhost:8880. No Uteki service, fonts, credentials or company data used by this package.
 - check-portability.py: 70 local runtime references and 29 installed references resolve. Initially installed all 44 skill files in an isolated temporary destination; bytes identical. A second install was rejected and left existing files unchanged. No GitHub fetch attempted because this project is not uploaded.
@@ -24,4 +26,18 @@ Illustrative preview: docs/preview.svg
 
 ## GitHub publication
 
-Owner-authorized publication and remote installation verification are in progress; exact results will be appended after execution. Historical local checks above remain recorded.
+Published publicly at https://github.com/Rain1601/editorial-design-kit under MIT. GitHub recognizes MIT. Both READMEs use the real installation URL. Search topics: codex, agent-skills, design-system, editorial-design, research-reports, ui-components; these describe the project, not a search ranking guarantee.
+
+### Real remote installation
+
+Official Codex Skill Installer successfully downloaded https://github.com/Rain1601/editorial-design-kit/tree/main/skills/editorial-design into an isolated temporary project's .agents/skills directory. Tested main revision: 998cad12f70730e52f3ad91c7713e7936b3a64e7. All 45 installed files match the published commit byte for byte, including LICENSE. The user's existing installation was not replaced. Later documentation-only updates do not change the tested skill files.
+
+### Real Codex use
+
+A fresh ephemeral Codex CLI session in the isolated workspace read the installed SKILL.md and references and generated a bilingual reading queue: three fictional readings, selectable list/detail, Paper / Paper Night. It reused ItemList and applyPalette, preserved LICENSE, and completed JavaScript syntax plus three controller/dependency/license tests. No original repository or network runtime dependency was needed for its page.
+
+Parent browser verification: selected “A library for rain”, changed Paper Night, and confirmed the same detail title; switched to Chinese and confirmed “雨的图书馆” remained selected. The generated page is a local verification artifact, not a GitHub-hosted demo or a live backend. Raw session logs are not included in this repository.
+
+### GitHub checks
+
+Initial main revision passed GitHub Actions portability and 34 contract tests. Final remote parity is checked after uploading this record. These checks do not establish arbitrary-content quality, full accessibility, cross-OS font parity or production research.

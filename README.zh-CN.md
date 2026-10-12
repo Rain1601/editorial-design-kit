@@ -48,7 +48,7 @@ Codex 自动发现新增 Skill；未出现时重启 Codex。更新前先备份�
 https://github.com/Rain1601/editorial-design-kit/tree/main/skills/editorial-design
 ```
 
-便携检查覆盖本地安装和示例依赖；远程验证结果记录在 VALIDATION.md。[Codex 官方 Skill 说明](https://learn.chatgpt.com/docs/build-skills)。
+已验证：官方 Skill Installer 从本仓库下载安装，独立 Codex CLI 会话使用下载的 Skill 生成可运行双语页面。版本与边界见 [VALIDATION.md](VALIDATION.md)。[Codex 官方 Skill 说明](https://learn.chatgpt.com/docs/build-skills)。
 
 ## 在 Codex 中使用
 
