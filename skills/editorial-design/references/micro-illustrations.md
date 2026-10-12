@@ -1,6 +1,6 @@
 # 小型动态插画 / Micro illustrations
 
-用于章节标题、Agent 输入区、笔记与空态的视觉标点。正文在一页连续展示；动画只在固定的小插画区域内部发生，不推动排版，不表达任务进度。三个原创 SVG 为工具包展开、纸张翻动和铅笔落笔，不包含 Anthropic 官方素材。
+用于章节标题、Agent 输入区、笔记与空态的视觉标点。正文在一页连续展示；动画只在固定的小插画区域内部发生，不推动排版，不表达任务进度。工具包启用动态，纸张与铅笔仅保留静态 SVG 接口，不包含 Anthropic 官方素材。
 
 复制 `assets/editorial/micro-illustration.mjs` 和 `micro-illustration.css`，引入样式后使用：
 
@@ -26,7 +26,7 @@ illustration.destroy();
 
 语言切换调用 setLabels，不重建节点、不重播。主题直接更新上层语义色卡，不更改动画或业务状态。调用方卸载时 destroy，取消待执行动画、监听和观察器，移除本组件创建的节点。组件不持有报告阅读位置、Agent 输入、审批状态或产物。
 
-可运行接入：`examples/research-report.html` 开头的纸张与末尾的铅笔、`examples/agent-task/agent-task.html` 标题旁的工具包；安装包自带 `assets/editorial/agent-starter.html` 同样使用工具包。报告示例在仓库 examples 下，核心模块和 Agent starter 随 skill 安装。
+可运行接入：`examples/agent-task/agent-task.html` 标题旁的工具包；安装包自带 `assets/editorial/agent-starter.html` 同样使用工具包。报告示例在仓库 examples 下，核心模块和 Agent starter 随 skill 安装。
 
 不要让每个段落都带循环插画。图形应有可理解的静态落点，动作只补充一个含义。复杂素材可另选 Lottie 或短视频，不能把技术选择误写成统一美学要求。
 
@@ -34,10 +34,8 @@ illustration.destroy();
 
 工具包沿用已确认的宽箱体、圆提手、双搭扣与三件工具造型。外轮廓与细节线分级，工具下部被箱体前沿遮挡；箱盖包含提手，按底部铰链方向开合，最后回到默认开放静帧。硬件、木柄与金属从 ink/fill/accent 混合出低饱和角色色，继续支持夜间与自定义配色。生成的静态图片可以用作造型方向稿；实际组件是分层 SVG，不能将位图方向稿称为已具备可换色或分层动画能力。先核对比例、轮廓、遮挡与小尺寸可读性，再设计运动。
 
-## 纸张与铅笔：确认稿与动作
+## 撤下状态 / Withdrawn motion
 
-纸张采用三层略错开的叠页、单个折角和三行短笔迹；铅笔采用短笔身、石墨笔尖和一条连接小圆点的弧线。轮廓用轻微不规则的曲线，填色保持平面和低对比，避免加入颗粒、阴影或多余工具细节。静态稿经用户确认后才制作分层 SVG。
+0.30: 纸张翻动与铅笔落笔的页面效果未获用户认可，已从报告与 Agent 页撤下。组件删除相应动画分支，paper / pencil 仅保留静态接口兼容；play 不启动动画，重播按钮隐藏。不作为稳定可复用或认可的动效。工具包保留。
 
-纸页围绕左边缘轻抬约 28 度并落回，避免大幅旋转使页面突然变薄或反面穿帮。铅笔先落到弧线起点，沿线移动，同时逐步露出笔迹，再抬回默认静帧；笔尖和笔迹共享坐标，禁止只移动笔而让线条在无关位置出现。两者约 1.1 秒，单次播放，不用持续抖动模拟手绘。轮廓继承 ink，纸面继承 fill，笔迹继承 accent；夜间版与换色无需替换素材。
-
-报告沿用开头纸页、末尾铅笔；Agent 输入标题旁使用铅笔，产物标题旁使用纸页（56px），标题前保留工具包。插画宿主在状态渲染区域之外，语言仅更新无障碍标签，主题仅更新变量，切换不重播、不清空输入或改变审批阶段。
+Paper and pencil motion has been withdrawn from report and Agent pages after visual review. The API retains static poses for compatibility; replay stays static and its button is hidden. These are not recommended motion patterns. Toolkit motion remains available.

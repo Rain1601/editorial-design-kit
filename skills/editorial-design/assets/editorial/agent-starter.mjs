@@ -1,4 +1,4 @@
-import {mountMicroIllustration} from './micro-illustration.mjs?v=0.29';
+import {mountMicroIllustration} from './micro-illustration.mjs?v=0.30';
 import {mountChoiceSwitch} from './choice-switch.mjs';
 import {applyPalette} from './palette-presets.mjs';
 import {mountTaskInput,mountTaskExecution,mountTaskApproval,mountTaskArtifacts} from './agent-components.mjs';
@@ -6,8 +6,6 @@ import {TaskEngine,busy} from './agent-demo-engine.mjs';
 import {getDemoTask} from './agent-demo-tasks.mjs';
 const $=id=>document.getElementById(id);
 const toolbox=mountMicroIllustration($('agent-toolbox'),{kind:'toolbox',label:'工具包展开',replayLabel:'重播工具包展开'});
-const pencil=mountMicroIllustration($('agent-pencil'),{kind:'pencil',size:56,label:'铅笔落笔',replayLabel:'重播铅笔落笔'});
-const paper=mountMicroIllustration($('agent-paper'),{kind:'paper',size:56,label:'纸张翻动',replayLabel:'重播纸张翻动'});
 const config=getDemoTask(new URLSearchParams(location.search).get('task')||'writing');
 const view={language:'zh',appearance:'paper',selected:null,chart:'bars',fail:false};
 const english={skip:'Skip to task input',eyebrow:'WORK NOTES / 01',title:'From a first thought,<br>to a draft worth reviewing.',dek:'Describe the task, set the scope, and let the demo continue. Every approval is yours.',boundary:'Local demo · No backend or model · No file uploads',inputTitle:'Describe the task',taskLabel:'What would you like to work on?',taskHelp:'Start with the goal and the intended reader.',example:'Try an example ↗',attachments:'Attachments',addFiles:'＋ Add local files',fileHelp:'Name, size, type and modified date only. File contents are never read.',fileEmpty:'No attachments yet. You can start without them.',demoOptions:'Demo options',failOption:'Simulate a generation error to explore recovery',start:'Start local demo →',cancel:'Cancel run',restart:'Start over',execution:'Execution & approval',log:'Execution log',logEmpty:'Steps will appear here as the local demo runs.',decision:'YOUR DECISION',reviewTitle:'How far should this draft go?',reviewHelp:'Choose a scope and acknowledge the demo limits. No artifacts are generated before approval.',scope:'Draft scope',brief:'Brief draft',briefHelp:'Opening, suggested actions, and next steps.',expanded:'Expanded draft',expandedHelp:'Add a small trial and a reflection section.',ack:'I understand this is a local template specimen. Files are not analyzed and facts are not verified.',approve:'Approve & continue →',reject:'Reject & revise',output:'Artifacts to take away',outputEmpty:'No artifacts yet.',outputHelp:'After approval, the demo creates two original specimens to view and download.',originalNote:'Original text stays intact. Interface language changes never translate or rewrite your content.',download:'Download Markdown ↓',structure:'Explore draft structure',structureHelp:'Paragraph counts by level-two heading in the selected specimen. This describes text structure, not execution progress.',session:'THIS SESSION',navInput:'01 / Task & attachments',navExecution:'02 / Execution & approval',navOutput:'03 / Original specimens',principle:'Approval comes first.',principleHelp:'The run pauses at scope selection. Approve, reject and revise, or cancel at any time.',privacy:'Task and file metadata stay in this page’s memory only. Refreshing clears them.',footer:'A process you can inspect. A draft you can refine.'};
@@ -37,8 +35,6 @@ const approval=mountTaskApproval($('approval-host'),{motion:true,labels:labels()
 const artifacts=mountTaskArtifacts($('artifacts-host'),{motion:true,labels:labels(),onAction:action});
 function render(){
  toolbox.setLabels(tr('工具包展开','Opening a toolkit'),tr('重播工具包展开','Replay toolkit opening'));
- pencil.setLabels(tr('铅笔落笔','Pencil drawing'),tr('重播铅笔落笔','Replay pencil drawing'));
- paper.setLabels(tr('纸张翻动','Turning a sheet'),tr('重播纸张翻动','Replay sheet turn'));
  const s=engine.state,active=busy(s.phase),phase=phases[s.phase],l=labels(),opts={labels:l,language:view.language};
  input.update({input:s.input,files:s.files.map(f=>({...f,id:JSON.stringify([f.name,f.size,f.lastModified])})),busy:active,error:s.error==='input'?'input':'',canCancel:active,canRestart:s.phase!=='idle',fail:view.fail,showDemoOptions:true},opts);
  execution.update({status:pick(phase.slice(0,2)),description:pick(phase.slice(2)),tone:({preparing:'running',review:'waiting',writing:'running',rejected:'cancelled'})[s.phase]||s.phase,entries:s.logs.map((key,i)=>({id:'log-'+i,text:pick(logText[key])}))},opts);

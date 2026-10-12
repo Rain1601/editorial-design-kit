@@ -49,4 +49,4 @@ Dashboard 卡片重排与模块就地放大参考 [references/dashboard.md](refe
 
 浏览器检查按用户要求或具体浏览器问题做，不默认生成多视口截图矩阵，不把程序通过写成审美获认可。交付可用页面/组件、采用的色卡与布局、已验证行为和剩余范围。模拟内容与真实执行明确区分。此 skill 不授权付费模型、发布、上传或后端接入。
 
-小型手绘插画参考 [references/micro-illustrations.md](references/micro-illustrations.md)：先确认静态轮廓与比例，再制作可换色 SVG 与克制的单次动作。报告与 Agent 的纸张、铅笔示例可直接复用；插画不能表达未经确认的执行进度。
+小型手绘插画参考 [references/micro-illustrations.md](references/micro-illustrations.md)：先确认静态轮廓与比例，再制作可换色 SVG 与克制的单次动作。纸张与铅笔动效已撤下，仅保留静态兼容接口，不作为推荐动效；插画不能表达未经确认的执行进度。

@@ -45,12 +45,11 @@ export function mountMicroIllustration(host,{kind='toolbox',size=96,label='Decor
  let effects=[],epoch=0,destroyed=false,observer=null,seen=false;
  function setLabels(nextLabel,nextReplay){svg.setAttribute('aria-label',nextLabel);button.setAttribute('aria-label',nextReplay);button.title=nextReplay;}
  setLabels(label,replayLabel);
+ if(kind!=='toolbox')button.hidden=true;
  function settle(){epoch++;for(const effect of effects)effect.cancel();effects=[];root.dataset.motion='still';}
- async function play(){if(destroyed)return false;settle();seen=true;if(reduce()||!svg.animate)return true;const token=epoch;root.dataset.motion='playing';
+ async function play(){if(destroyed)return false;settle();seen=true;if(kind!=='toolbox'||reduce()||!svg.animate)return true;const token=epoch;root.dataset.motion='playing';
  const animate=(part,frames,delay=0)=>{const el=root.querySelector(`[data-part="${part}"]`);effects.push(el.animate(frames,{duration:1100,delay,easing:'cubic-bezier(.22,1,.36,1)',fill:'both'}));};
  if(kind==='toolbox'){animate('lid',[{transform:'perspective(300px) rotateX(73deg) translateY(11px)'},{transform:'perspective(300px) rotateX(-3deg)',offset:.75},{transform:'none'}]);animate('tools',[{transform:'translateY(24px)',opacity:0},{transform:'translateY(-2px)',opacity:1,offset:.75},{transform:'none',opacity:1}],150);}
- if(kind==='paper')animate('page',[{transform:'perspective(350px) rotateY(0deg)'},{transform:'perspective(350px) rotateY(-28deg) rotateZ(-2deg)',offset:.45},{transform:'perspective(350px) rotateY(-8deg) rotateZ(-.5deg)',offset:.75},{transform:'none'}]);
- if(kind==='pencil'){animate('pencil',[{transform:'translate(-50px,-3px) rotate(-5deg)'},{transform:'translate(-50px,6px) rotate(0deg)',offset:.25},{transform:'translate(-24px,9px) rotate(0deg)',offset:.7},{transform:'translate(0px,0px) rotate(0deg)',offset:.88},{transform:'none'}]);animate('mark',[{strokeDashoffset:'1'},{strokeDashoffset:'1',offset:.25},{strokeDashoffset:'0',offset:.88},{strokeDashoffset:'0'}]);}
  const running=[...effects];try{await Promise.all(running.map(effect=>effect.finished));}catch{return false;}if(destroyed||token!==epoch)return false;settle();return true;
  }
  const replay=()=>void play();button.addEventListener('click',replay);
