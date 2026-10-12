@@ -1,4 +1,4 @@
-import {mountMicroIllustration} from '../skills/editorial-design/assets/editorial/micro-illustration.mjs';
+import {mountMicroIllustration} from '../skills/editorial-design/assets/editorial/micro-illustration.mjs?v=0.29';
 import {mountChoiceSwitch} from '../skills/editorial-design/assets/editorial/choice-switch.mjs';
 import {applyPalette} from '../skills/editorial-design/assets/editorial/palette-presets.mjs';
 import {Header} from '../skills/editorial-design/assets/editorial/components.mjs';

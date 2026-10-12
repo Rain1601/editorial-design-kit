@@ -21,3 +21,12 @@
 .edk-micro .edk-toolbox-metal{fill:var(--micro-fill);fill:color-mix(in srgb,var(--micro-fill) 91%,var(--micro-ink) 9%)}
 .edk-micro .edk-toolbox-accent{fill:var(--micro-accent)}
 .edk-micro .edk-toolbox-tip{fill:var(--micro-ink)}
+
+/* Hand-drawn approval poses: quiet contours, pale flat layers, no bitmap texture. */
+.edk-micro[data-kind="paper"] .edk-micro-drawing,.edk-micro[data-kind="pencil"] .edk-micro-drawing{stroke-width:1.6}
+.edk-micro .edk-paper-sheet{fill:var(--micro-fill)}
+.edk-micro .edk-paper-back,.edk-micro .edk-paper-fold,.edk-micro .edk-pencil-body,.edk-micro .edk-pencil-node{fill:var(--micro-fill);fill:color-mix(in srgb,var(--micro-fill) 94%,var(--micro-ink) 6%)}
+.edk-micro .edk-pencil-detail{fill:none;stroke-width:1.3}
+.edk-micro .edk-pencil-tip{fill:var(--micro-ink)}
+.edk-micro [data-part="pencil"]{transform-origin:0% 100%}
+.agent-section-illustration{margin-left:auto;margin-right:14px}
