@@ -1,4 +1,4 @@
-import {mountMicroIllustration} from './micro-illustration.mjs';
+import {mountMicroIllustration} from './micro-illustration.mjs?v=0.28';
 import {mountChoiceSwitch} from './choice-switch.mjs';
 import {applyPalette} from './palette-presets.mjs';
 import {mountTaskInput,mountTaskExecution,mountTaskApproval,mountTaskArtifacts} from './agent-components.mjs';

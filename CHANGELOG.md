@@ -60,3 +60,7 @@
 ## Micro illustrations — 2026-10-12
 
 Added three original reusable SVG animations with semantic palette roles, one-time entrance, explicit replay, interruption and reduced-motion support. Reports use paper and pencil; portable Agent tasks use toolbox. Skill instructions include the lifecycle and content boundaries.
+
+## Toolkit drawing refinement — 2026-10-12
+
+Redrew the toolkit from the approved static direction: broad case, rounded handle, two clasps and three recognizable tools. Lid and attached handle rotate from the hinge; tools emerge behind the foreground case. Added palette-derived hardware, wood and metal fills while retaining one-time playback and static settling.

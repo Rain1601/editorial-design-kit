@@ -197,4 +197,4 @@ node --test tests/*.test.mjs examples/agent-task/tests/*.test.mjs
 
 原创 SVG 工具包展开、纸张翻动和铅笔落笔。固定小尺寸占位，支持语义换色、重播和减少动态。已接进报告与 Agent 页，正文保持单页连续展示，动画与业务状态独立。
 
-[Report / 报告](https://rain1601.github.io/editorial-design-kit/examples/research-report.html?release=0.27) · [Agent](https://rain1601.github.io/editorial-design-kit/examples/agent-task/agent-task.html?release=0.27)
+[Report / 报告](https://rain1601.github.io/editorial-design-kit/examples/research-report.html?release=0.27) · [Agent](https://rain1601.github.io/editorial-design-kit/examples/agent-task/agent-task.html?release=0.28)

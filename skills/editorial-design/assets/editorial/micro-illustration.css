@@ -2,7 +2,7 @@
 .edk-micro-svg{display:block;width:100%;height:100%;overflow:visible}
 .edk-micro-drawing{fill:var(--micro-fill);stroke:var(--micro-ink);stroke-width:2.3;stroke-linejoin:round;stroke-linecap:round}
 .edk-micro [data-part]{transform-box:fill-box;transform-origin:50% 85%}
-.edk-micro [data-part="lid"]{transform:translateY(-18px) rotate(-8deg)}
+.edk-micro [data-part="lid"]{transform-origin:50% 100%}
 .edk-micro [data-part="page"]{transform-origin:0% 50%}
 .edk-micro .edk-ink-line,.edk-micro .edk-mark{fill:none;stroke:var(--micro-accent)}
 .edk-micro .edk-mark{stroke-dasharray:1;stroke-dashoffset:0}
@@ -11,3 +11,13 @@
 .edk-micro-replay:hover{opacity:1}.edk-micro-replay:focus-visible{outline:2px solid var(--micro-accent);outline-offset:2px}
 .report-pictogram{max-width:1120px;margin:24px auto 0;padding:0 24px}.report-note-illustration{max-width:1120px;margin:24px auto;padding:0 24px;display:flex;gap:24px;align-items:center;color:var(--muted);font-size:13px}.agent-pictogram{margin:0 0 16px}
 @media(prefers-reduced-motion:reduce){.edk-micro *{animation:none!important;transition:none!important}}
+
+/* Approved broad case, rounded handle and three legible tools; palette-aware flat layers. */
+.edk-micro[data-kind="toolbox"] .edk-micro-drawing{stroke-width:1.35}
+.edk-micro .edk-toolbox-detail{fill:none;stroke-width:.85}
+.edk-micro .edk-toolbox-inside{fill:var(--micro-fill);fill:color-mix(in srgb,var(--micro-fill) 86%,var(--micro-ink) 14%)}
+.edk-micro .edk-toolbox-hardware{fill:var(--micro-fill);fill:color-mix(in srgb,var(--micro-fill) 70%,var(--micro-accent) 30%)}
+.edk-micro .edk-toolbox-wood{fill:var(--micro-fill);fill:color-mix(in srgb,var(--micro-fill) 60%,var(--micro-accent) 40%)}
+.edk-micro .edk-toolbox-metal{fill:var(--micro-fill);fill:color-mix(in srgb,var(--micro-fill) 91%,var(--micro-ink) 9%)}
+.edk-micro .edk-toolbox-accent{fill:var(--micro-accent)}
+.edk-micro .edk-toolbox-tip{fill:var(--micro-ink)}

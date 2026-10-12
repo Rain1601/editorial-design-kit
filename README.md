@@ -200,4 +200,4 @@ Keep reports on one continuous page with an outline, scroll-driven illustration 
 
 Original SVG toolkit opening, page turning and pencil sketching. Fixed small footprints, semantic colors, replay controls and reduced-motion support. Integrated in reports and Agent tasks; business state remains separate.
 
-[Report / 报告](https://rain1601.github.io/editorial-design-kit/examples/research-report.html?release=0.27) · [Agent](https://rain1601.github.io/editorial-design-kit/examples/agent-task/agent-task.html?release=0.27)
+[Report / 报告](https://rain1601.github.io/editorial-design-kit/examples/research-report.html?release=0.27) · [Agent](https://rain1601.github.io/editorial-design-kit/examples/agent-task/agent-task.html?release=0.28)
