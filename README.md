@@ -195,3 +195,9 @@ The [report reader](https://rain1601.github.io/editorial-design-kit/examples/res
 Keep reports on one continuous page with an outline, scroll-driven illustration and inline annotation. All sections stay readable; language and palette switches preserve the reading anchor, expansion and note. No forced chapter pagination.
 
 [Paper](https://rain1601.github.io/editorial-design-kit/examples/scroll-story.html?release=0.26) · [Paper Night](https://rain1601.github.io/editorial-design-kit/examples/scroll-story.html?palette=paper-night&release=0.26) · [English](https://rain1601.github.io/editorial-design-kit/examples/scroll-story.html?language=en&release=0.26)
+
+## Micro illustrations
+
+Original SVG toolkit opening, page turning and pencil sketching. Fixed small footprints, semantic colors, replay controls and reduced-motion support. Integrated in reports and Agent tasks; business state remains separate.
+
+[Report / 报告](https://rain1601.github.io/editorial-design-kit/examples/research-report.html?release=0.27) · [Agent](https://rain1601.github.io/editorial-design-kit/examples/agent-task/agent-task.html?release=0.27)

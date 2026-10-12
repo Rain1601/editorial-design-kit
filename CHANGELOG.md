@@ -56,3 +56,7 @@
 - Added chapter-navigator for native continuous scroll, cancellable outline jumps and silent chapter-relative restoration.
 - Added a bilingual Paper / Paper Night single-page specimen with curved scroll illustration, annotation, comparison table and note.
 - Recorded continuous content as the default; chapter height follows content and reports do not require pagination.
+
+## Micro illustrations — 2026-10-12
+
+Added three original reusable SVG animations with semantic palette roles, one-time entrance, explicit replay, interruption and reduced-motion support. Reports use paper and pencil; portable Agent tasks use toolbox. Skill instructions include the lifecycle and content boundaries.

@@ -1,11 +1,11 @@
 <!doctype html>
 <html lang="zh-CN">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark"><title>Agent Studio · 任务工作台</title><link rel="stylesheet" href="./choice-switch.css"><link rel="stylesheet" href="./agent-starter.css"><link rel="stylesheet" href="./agent-components.css"><script type="module" src="./agent-starter.mjs"></script></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark"><title>Agent Studio · 任务工作台</title><link rel="stylesheet" href="./choice-switch.css?v=0.27"><link rel="stylesheet" href="./agent-starter.css?v=0.27"><link rel="stylesheet" href="./agent-components.css?v=0.27"><script type="module" src="./agent-starter.mjs?v=0.27"></script><link rel="stylesheet" href="./micro-illustration.css?v=0.27"></head>
 <body>
 <a class="skip" href="#task" data-i18n="skip">跳到任务输入</a>
 <header class="masthead"><a class="brand" href="./agent-starter.html">atelier <span>/ AGENT STUDIO</span></a><div class="preferences"><div id="language"></div><div id="appearance"></div></div></header>
 <main>
-<section class="intro" data-reading-anchor id="intro"><p class="eyebrow" data-i18n="eyebrow">工作札记 / 01</p><h1 data-i18n="title">从一个想法，<br>到一份可审阅的初稿。</h1><p class="dek" data-i18n="dek">说明任务，划定范围，再让演示继续。每次确认，都由你决定。</p><p class="demo-note"><span class="dot"></span><span data-i18n="boundary">本地演示 · 无真实后端或模型 · 附件不上传</span></p></section>
+<section class="intro" data-reading-anchor id="intro"><p class="eyebrow" data-i18n="eyebrow">工作札记 / 01</p><div id="agent-toolbox" class="agent-pictogram"></div><h1 data-i18n="title">从一个想法，<br>到一份可审阅的初稿。</h1><p class="dek" data-i18n="dek">说明任务，划定范围，再让演示继续。每次确认，都由你决定。</p><p class="demo-note"><span class="dot"></span><span data-i18n="boundary">本地演示 · 无真实后端或模型 · 附件不上传</span></p></section>
 <div class="workspace"><div class="work-main">
 <section id="compose" data-reading-anchor class="section"><div class="section-heading"><span class="number">01</span><h2 data-i18n="inputTitle">交代任务</h2></div><div id="input-host"></div></section>
 <section id="execution" data-reading-anchor class="section"><div class="section-heading"><span class="number">02</span><h2 data-i18n="execution">执行与确认</h2></div><div id="execution-host"></div><div id="approval-host"></div></section>

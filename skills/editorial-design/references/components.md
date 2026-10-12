@@ -60,3 +60,7 @@ DataTable只有原生Tab/Enter/Space按钮基础；ArrowUp/Down选行或roving t
 ## 单页连续阅读
 
 章节定位、原生滚动跟随与章内位置恢复：`chapter-navigator.mjs/css`。接口和使用边界见 [navigation-scroll.md](navigation-scroll.md)，完整示例为 `scroll-story.html`。所有章节连续可读，不强制分页。
+
+## 小型动态插画
+
+`micro-illustration.mjs/css` 提供 toolbox、paper、pencil；接口、语义换色、播放与卸载契约见 [micro-illustrations.md](micro-illustrations.md)。固定占位，语言只更新标签，默认一次播放。

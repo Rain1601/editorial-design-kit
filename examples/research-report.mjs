@@ -1,3 +1,4 @@
+import {mountMicroIllustration} from '../skills/editorial-design/assets/editorial/micro-illustration.mjs';
 import {mountChoiceSwitch} from '../skills/editorial-design/assets/editorial/choice-switch.mjs';
 import {applyPalette} from '../skills/editorial-design/assets/editorial/palette-presets.mjs';
 import {Header} from '../skills/editorial-design/assets/editorial/components.mjs';
@@ -13,6 +14,8 @@ const loaded=readSession(storage,ids);let session=loaded.value,storageStatus=loa
 let language=['zh','en'].includes(params.get('language'))?params.get('language'):session.appearance.language;
 let palette=['paper','paper-night','mineral','plum'].includes(params.get('palette'))?params.get('palette'):session.appearance.palette;
 let reader;
+const paper=mountMicroIllustration(document.querySelector('#report-paper'),{kind:'paper',label:'纸张翻动',replayLabel:'重播纸张翻动'});
+const pencil=mountMicroIllustration(document.querySelector('#report-pencil'),{kind:'pencil',size:72,label:'铅笔落笔',replayLabel:'重播铅笔落笔'});
 const paletteSwitch=mountChoiceSwitch(document.querySelector('#report-palette'),{choices:[{value:'paper',label:'Paper'},{value:'paper-night',label:'Paper Night'},{value:'mineral',label:'Mineral'},{value:'plum',label:'Plum'}],value:palette,onChange:changePalette});
 const host=document.querySelector('#report-host'),scrollContainer=document.scrollingElement;
 const tr=(zh,en)=>language==='zh'?zh:en;
@@ -28,6 +31,7 @@ function save(state){
 }
 function statusLabel(){document.querySelector('#report-read-status').textContent=session.reports[report?.id]?.status==='completed'?tr('已标记读完 · 改为阅读中','Marked read · Resume reading'):tr('标记读完','Mark as read');}
 function render(){
+ paper.setLabels(tr('纸张翻动','Turning pages'),tr('重播纸张翻动','Replay turning pages'));pencil.setLabels(tr('铅笔落笔','Pencil sketch'),tr('重播铅笔落笔','Replay pencil sketch'));document.querySelector('#report-motion-note').textContent=tr('留下一个问题，继续下一次阅读。','Leave a question for your next reading.');
  let state=reader?.getState();
  if(!reader&&!location.hash&&report&&session.reports[report.id]){try{state=normalizeReportState(session.reports[report.id].state,report);}catch{storageStatus='invalid';delete session.reports[report.id];}}
  reader?.destroy();document.documentElement.lang=language==='zh'?'zh-CN':'en';document.body.style.cssText=componentCSS();applyAppearance();
