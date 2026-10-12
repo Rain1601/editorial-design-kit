@@ -13,21 +13,45 @@ Inspired by Anthropic’s editorial design. This is an independent project, not 
 Copy the whole prompt below into Codex. It installs the skill and applies it to the page you name; replace the bracketed task before sending. If the same skill is already installed, reuse it and preserve local changes.
 
 ```text
-Use $skill-installer to install this skill:
+Use $skill-installer to install Editorial Design Kit:
 https://github.com/Rain1601/editorial-design-kit/tree/main/skills/editorial-design
-If editorial-design is already installed, reuse it without overwriting local changes.
-Then use $editorial-design to [create or refine my page; specify its purpose and project path].
-Use Paper / Paper Night and inline 中文 / English buttons.
-Preserve real content, reading position, selected items, expanded sections and figure modes.
-Reuse my existing framework. Verify the affected interactions and deliver a working preview.
-If the newly installed skill is not detected, tell me to restart Codex and run the task again.
+
+If editorial-design is already installed, check its version and local changes.
+Do not overwrite existing customizations.
+
+Then use $editorial-design for this task:
+Task type: [refine an existing page / create a new page]
+Project path: [project path]
+Target page: [file, route or page name]
+Audience and main task: [who uses it and what they need to accomplish]
+
+Keep the editorial design natural and concise. Refine typography, spacing,
+information hierarchy and interactions. Choose a layout for the task;
+do not force every page into one template.
+Default to Paper / Paper Night and inline 中文 / English buttons.
+Allow a custom brand palette. Use semantic color roles and configure
+layout independently from appearance.
+
+For an existing page, preserve real content, behavior and saved configuration.
+For a new page, define content and states before composing required components.
+Reuse the existing framework rather than changing stacks to apply the skill.
+
+When switching language or appearance, preserve reading position, selected items,
+filters, sorting, expanded sections, figure modes and source panel state.
+Do not rewrite original source excerpts.
+Handle empty, loading, error, approval-needed and completed states as appropriate.
+Distinguish demo content from real execution.
+
+Verify affected interactions and deliver a working preview, verified behavior
+and known limits. If the installed skill is not detected, explain that Codex
+needs a restart and provide the prompt to continue afterward.
 ```
 
 ## Live previews
 
 [Open the kit](https://rain1601.github.io/editorial-design-kit/) · [Paper report](https://rain1601.github.io/editorial-design-kit/examples/research-report.html?report=evidence-to-judgment&palette=paper) · [Paper Night report](https://rain1601.github.io/editorial-design-kit/examples/research-report.html?report=evidence-to-judgment&palette=paper-night) · [Agent task workspace](https://rain1601.github.io/editorial-design-kit/examples/agent-task/agent-task.html) · [Reading queue](https://rain1601.github.io/editorial-design-kit/examples/reading-queue.html) · [Install the Codex skill](https://github.com/Rain1601/editorial-design-kit/tree/main/skills/editorial-design)
 
-Open these pages directly; no local server is needed. Appearance choices are shown as inline buttons. Switching appearance preserves the current report and source panel instance. Copy the installation prompt below into Codex.
+Open these pages directly; no local server is needed. Appearance choices are shown as inline buttons. Switching appearance preserves the current report and source panel instance. Copy the installation prompt above into Codex.
 
 ## What is included
 
@@ -37,6 +61,36 @@ Open these pages directly; no local server is needed. Appearance choices are sho
 - A report library with three authored specimens: summaries, chapters, independent chart/data modes, source excerpts and reading return.
 
 The skill guides Codex; it does not automatically add a UI dependency to your app. Examples contain authored proposals and synthetic data, not a live research or Agent backend.
+
+## Supported pages and components
+
+| Page type | Current support |
+|---|---|
+| Articles, case studies and reading pages | Text hierarchy, quotations, media windows, video, animated explainers and image inspection |
+| Research reports | Summaries, chapter navigation, chart/data switching, citations, centralized sources and reading return |
+| Research libraries, lists and detail pages | Cards, lists, tables, filtering, sorting, selected records and details |
+| Agent task pages | Input, attachment metadata, execution logs, approval requests, artifact previews and download actions |
+| Dashboards and financial analysis | Composition guidance, scope controls, signed charts, linked data points and source review; compose for the task |
+| Settings | General settings first, advanced disclosure, preview/save/revert rules and basic controls |
+
+Reusable components by purpose:
+
+- **Structure and navigation**: Header, Sidebar, tabs/inline choices, breadcrumbs and pagination.
+- **Content and records**: cards, lists, tables, record details, article leads and quotations.
+- **Input and feedback**: text fields, action menus, tooltips, disclosures, notices, errors and loading states.
+- **Evidence and media**: citations, centralized source panels, media windows, video, animated explainers and image inspection.
+- **Charts and reports**: signed charts, linked hover states, chart/data switching and a report reader.
+- **Agent workflow**: controlled input, execution logs, approval requests and artifacts; callers supply tasks, options, labels and artifact counts.
+
+[Component interfaces and limits](skills/editorial-design/references/components.md) · [Page composition](skills/editorial-design/references/composition.md) · [Agent integration contract](skills/editorial-design/references/agent-tasks.md).
+
+Reports and Agent tasks have complete runnable examples. Dashboards, financial analysis and settings have composition rules and building blocks; not every page pattern has a complete template. Components are Vanilla ES modules + CSS, adaptable to an existing React/Vue architecture. PDF typography rules are reference guidance; no PDF renderer is bundled. Real research, Agent execution, attachment-content analysis and backend integration remain application responsibilities.
+
+### Reusable Agent components
+
+Agent Studio now uses four controlled components: task input, execution log, approval request and artifacts. Import them from [agent-components.mjs](skills/editorial-design/assets/editorial/agent-components.mjs), with the scoped stylesheet and your own task state, labels and action callbacks. [Integration contract](skills/editorial-design/references/agent-tasks.md).
+
+[Try a second task](https://rain1601.github.io/editorial-design-kit/examples/agent-task/agent-task.html?task=review-plan): three approval options and three artifacts use the same components. 中文 / English and Paper / Paper Night preserve current state and reading position. The [portable starter](skills/editorial-design/assets/editorial/agent-starter.html) ships inside the installed skill. Its timer/template engine is explicitly a local demo; connect your own backend for real execution.
 
 ## Install locally
 
@@ -111,7 +165,7 @@ Use the HTTP-served example index for interactive previews; GitHub’s file view
 
 ```sh
 python3 scripts/check-portability.py
-node --test tests/*.test.mjs
+node --test tests/*.test.mjs examples/agent-task/tests/*.test.mjs
 ```
 
 The portability check resolves local runtime/document links and verifies isolated installation, byte-for-byte contents and overwrite rejection. Tests check value semantics, identity, reading state and palette contracts. See [VALIDATION.md](VALIDATION.md) for actual results and limits; these checks do not prove arbitrary-report quality or full accessibility.
@@ -123,9 +177,3 @@ The portability check resolves local runtime/document links and verifies isolate
 Source is distributed through GitHub; this is not an npm package. The repository name is `editorial-design-kit`; the Codex invocation remains `$editorial-design`. See [CHANGELOG.md](CHANGELOG.md).
 
 A second fresh-project trial installed the GitHub skill and used an independent Codex session to generate Agent Studio. Its approval/cancellation lifecycle and actual browser interactions were checked; this is a local template demo, not a live Agent backend. Details: [Agent example](examples/agent-task/README.md) and [validation](VALIDATION.md).
-
-### Reusable Agent components
-
-Agent Studio now uses four controlled components: task input, execution log, approval request and artifacts. Import them from [agent-components.mjs](skills/editorial-design/assets/editorial/agent-components.mjs), with the scoped stylesheet and your own task state, labels and action callbacks. [Integration contract](skills/editorial-design/references/agent-tasks.md).
-
-[Try a second task](https://rain1601.github.io/editorial-design-kit/examples/agent-task/agent-task.html?task=review-plan): three approval options and three artifacts use the same components. 中文 / English and Paper / Paper Night preserve current state and reading position. The [portable starter](skills/editorial-design/assets/editorial/agent-starter.html) ships inside the installed skill. Its timer/template engine is explicitly a local demo; connect your own backend for real execution.
