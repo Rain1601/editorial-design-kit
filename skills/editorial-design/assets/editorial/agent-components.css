@@ -75,3 +75,7 @@
 .edk-agent-approval{border-left:2px solid var(--accent);padding:24px 0 8px 24px;margin-top:32px}
 :where(.edk-agent-input,.edk-agent-execution,.edk-agent-approval,.edk-agent-artifacts){color:var(--ink);font:15px/1.65 Arial,"PingFang SC",sans-serif}
 @media(max-width:650px){.edk-agent-artifacts .artifact-heading{flex-direction:column;align-items:flex-start}.edk-agent-approval{padding-left:16px}.edk-agent-artifacts .bar-row{grid-template-columns:minmax(0,110px) 1fr 30px}}
+
+.edk-agent-artifacts .edk-motion-rail{position:relative;padding-bottom:5px}.edk-agent-artifacts .edk-motion-marker{position:absolute;bottom:0;height:2px;background:var(--accent);transform-origin:left center;pointer-events:none}
+
+:where(.edk-agent-execution,.edk-agent-artifacts) .edk-motion-details{display:flow-root}

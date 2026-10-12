@@ -38,3 +38,9 @@
 - Extracted controlled input, execution, approval and artifact modules with scoped styles.
 - Added a standalone Agent starter to the installable skill and documented state/action contracts.
 - Added an independent three-option, three-artifact demo task; preserved bilingual UI, original content and Paper palettes.
+
+## Editorial motion — 2026-10-12
+
+- Added Motion Lab, cancellable disclosure/presence/selection adapters and native details lifecycle support.
+- Applied motion to the real report reader, reusable Agent renderers and portable starter.
+- Kept logical state independent of transitions, with immediate reduced-motion settling and non-animated restoration.

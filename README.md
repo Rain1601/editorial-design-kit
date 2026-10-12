@@ -181,3 +181,7 @@ The portability check resolves local runtime/document links and verifies isolate
 Source is distributed through GitHub; this is not an npm package. The repository name is `editorial-design-kit`; the Codex invocation remains `$editorial-design`. See [CHANGELOG.md](CHANGELOG.md).
 
 A second fresh-project trial installed the GitHub skill and used an independent Codex session to generate Agent Studio. Its approval/cancellation lifecycle and actual browser interactions were checked; this is a local template demo, not a live Agent backend. Details: [Agent example](examples/agent-task/README.md) and [validation](VALIDATION.md).
+
+### Motion in real pages
+
+The [report reader](https://rain1601.github.io/editorial-design-kit/examples/research-report.html?report=evidence-to-judgment) now uses natural-height disclosures and moving chart/data selection markers. [Agent Studio](https://rain1601.github.io/editorial-design-kit/examples/agent-task/agent-task.html?task=review-plan) uses expanding execution/structure sections, short presence transitions for approval and artifacts, and an artifact selection marker. Bilingual and Paper switches retain logical state and reading context. Agent renderers opt in with `{motion:true}`; copy `motion.mjs` alongside their dependencies. Reduced motion applies the latest state immediately. This remains a local template demo, without a live Agent backend.

@@ -76,3 +76,13 @@ selection.destroy();
 检查一次展开中反向收起、详情连续切换、不同长度选项与窗口缩放，以及系统减少动态开启后的立即更新。确认最后一个请求的终态有效、取消请求返回 false、收起区域不可操作、打开区域恢复自然尺寸。再检查键盘焦点与 aria-expanded / aria-pressed、主题与语言切换后的内容和位置。程序验证不等于完整可访问性审计；报告实际检查与未验证范围。
 
 可运行样例是 `../assets/editorial/motion-lab.html`，与 `motion-lab.mjs`、`motion-lab.css` 及引用的公共模块保持相对目录关系。region 使用独立包装层，避免叠加既有 height / translate 动画；marker 的 transform-origin 应为 left center。样例保留选择、展开及详情身份，支持中文 / English、Paper / Paper Night 与显式减少动态开关。
+
+## 原生 details 与实际页面
+
+`mountDetailsMotion(details, {onChange, duration, reducedMotion})` 适配包含直接 summary 的原生 details。返回 `{getExpanded(), setExpanded(next, {animate:true}), destroy()}`；setExpanded 返回稳定完成的 Promise<boolean>。用户点击先更新逻辑状态及 aria-expanded，再呈现自然高度变化。收起时若焦点在正文内，回到 summary。onChange 只通知用户点击后的逻辑状态，程序恢复不会重复触发它。
+
+关闭动画期间 details.open 暂时保持 true。保存状态必须读 getExpanded()，不能把过渡中的原生 open 当成业务状态。恢复页面用 `setExpanded(saved, {animate:false})`，避免语言切换重播入场。destroy 取消动画并还原子节点顺序，保留最新逻辑展开状态。
+
+报告 reader 默认把该适配器用于说明区，把 selection 用于每张图的图表／数据标记；初始化与翻译恢复不播放。Agent 的 mountTaskExecution、mountTaskApproval、mountTaskArtifacts 使用 `{motion:true}` 显式启用：执行与产物结构展开、确认与产物区出现、产物下划线迁移。默认 false 保持原调用兼容。复制这些模块时包含 motion.mjs；挂载实例随页面卸载调用 destroy。
+
+动效不清除确认、不批准任务、不改写产物。确认退出时内容暂时保留用于淡出，但控件立即禁用且调用方已结束 pending 状态。换标签时刷新标记测量，选择身份不变。减少动态偏好在每次状态更新检查，未实现播放中实时订阅系统偏好的变化。

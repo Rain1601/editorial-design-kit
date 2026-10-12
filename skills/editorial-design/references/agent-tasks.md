@@ -112,3 +112,7 @@ labels：`outputEmpty, outputHelp, originalNote, download, structure, structureH
 演示引擎只演示阶段、门控、取消和模板产物，不说明真实 Agent 已读附件、核验事实或完成研究。接真实运行时，从运行事件映射到 execution 模型，从真实权限请求映射 approval，从真实产物映射 artifacts；原样保留失败与缺口。后端用运行 ID / 请求 ID 使取消、重启后的旧回调失效，未经确认不能发布产物。
 
 最小验收：换一个不同任务，使用不同请求选项和非固定数量的产物；检查输入与附件身份、运行记录、待确认阻止继续、批准 / 拒绝、取消后迟到回调失效、产物原文与下载。再在中文 / English 和 Paper / Paper Night 间切换，确认状态、焦点、展开与阅读位置保留。契约测试和模拟演示不等于真实后端验收。
+
+## 可选动效
+
+执行、确认和产物挂载函数接受 `{motion:true}`；默认 false。真实样例和 agent-starter 显式开启。保留原受控 model/action，不把呈现完成当成执行成功。语言只更新 labels，配色只更新语义变量；沿用实例、请求 ID、确认范围与产物 ID。执行记录与产物结构可自然高度展开，确认／产物区短距离淡入，产物选中下划线按实际宽度移动。依赖与生命周期见 [motion.md](motion.md)。

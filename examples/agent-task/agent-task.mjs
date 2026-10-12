@@ -28,9 +28,9 @@ const labels=()=>({...view.language==='zh'?zh:english,scope:tr('确认范围','A
 const requestId=()=>config.id+':'+engine.epoch;
 const engine=new TaskEngine({scopeIds:config.options.map(o=>o.id),generate:config.generate,onChange:()=>render()});
 const input=mountTaskInput($('input-host'),{labels:labels(),onAction:action});
-const execution=mountTaskExecution($('execution-host'),{labels:labels()});
-const approval=mountTaskApproval($('approval-host'),{labels:labels(),onAction:action});
-const artifacts=mountTaskArtifacts($('artifacts-host'),{labels:labels(),onAction:action});
+const execution=mountTaskExecution($('execution-host'),{motion:true,labels:labels()});
+const approval=mountTaskApproval($('approval-host'),{motion:true,labels:labels(),onAction:action});
+const artifacts=mountTaskArtifacts($('artifacts-host'),{motion:true,labels:labels(),onAction:action});
 function render(){
  const s=engine.state,active=busy(s.phase),phase=phases[s.phase],l=labels(),opts={labels:l,language:view.language};
  input.update({input:s.input,files:s.files.map(f=>({...f,id:JSON.stringify([f.name,f.size,f.lastModified])})),busy:active,error:s.error==='input'?'input':'',canCancel:active,canRestart:s.phase!=='idle',fail:view.fail,showDemoOptions:true},opts);

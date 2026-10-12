@@ -178,3 +178,7 @@ node --test tests/*.test.mjs examples/agent-task/tests/*.test.mjs
 源码通过 GitHub 分发，不是 npm 包。仓库名 `editorial-design-kit`，Codex 调用名保留 `$editorial-design`。版本记录见 [CHANGELOG.md](CHANGELOG.md)。
 
 第二次全新项目验证已从 GitHub 安装 skill，并用独立 Codex 会话生成 Agent Studio。确认/取消流程及实际浏览器交互均已核验；它是本地模板演示，未接真实 Agent 后端。详见 [Agent 示例](examples/agent-task/README.md)与[验证记录](VALIDATION.md)。
+
+### 动效接入实际页面
+
+[报告阅读页](https://rain1601.github.io/editorial-design-kit/examples/research-report.html?report=evidence-to-judgment) 已接入自然高度展开、图表／数据选择标记。[Agent Studio](https://rain1601.github.io/editorial-design-kit/examples/agent-task/agent-task.html?task=review-plan) 已接入执行记录与产物结构展开、确认与产物区短距离淡入，以及产物选择标记。中英文与 Paper 切换保留逻辑状态和阅读上下文。Agent 渲染组件通过 `{motion:true}` 启用，复制时一起带上依赖 motion.mjs。减少动态时直接应用最新状态。Agent 页面仍为本地模板演示，没有真实后端。

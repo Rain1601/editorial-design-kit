@@ -1,3 +1,4 @@
+import {mountDetailsMotion} from './motion.mjs';
 /** Runtime-owned status and event text; this component never fabricates progress. */
 export function normalizeTaskExecution(model) {
   if (!model || typeof model !== 'object') throw new TypeError('Execution model is required');
@@ -14,7 +15,7 @@ export function normalizeTaskExecution(model) {
   return {status: model.status, description: model.description, tone: model.tone, entries};
 }
 
-export function mountTaskExecution(host, {prefix = '', labels, onAction = () => {}} = {}) {
+export function mountTaskExecution(host, {prefix = '', labels, onAction = () => {}, motion = false} = {}) {
   if (!host?.ownerDocument || typeof prefix !== 'string' || typeof onAction !== 'function') throw new TypeError('Invalid mount options');
   const validateLabels = value => {
     for (const key of ['log', 'logEmpty']) if (typeof value?.[key] !== 'string') throw new TypeError(`labels.${key} must be a string`);
@@ -31,6 +32,7 @@ export function mountTaskExecution(host, {prefix = '', labels, onAction = () => 
   const details = make('details', 'execution-log'); const summary = make('summary'); summary.textContent = copy.log;
   const logs = make('ol', 'logs'); const empty = make('p', 'log-empty', 'muted'); empty.textContent = copy.logEmpty;
   details.append(summary, logs, empty); root.append(line, details); host.append(root);
+  if(typeof motion!=='boolean')throw new TypeError('motion must be boolean');const disclosure=motion?mountDetailsMotion(details):null;
   const elements = {root, symbol, status, description, details, summary, logs, empty};
   return {
     elements,
@@ -46,6 +48,6 @@ export function mountTaskExecution(host, {prefix = '', labels, onAction = () => 
       const nodes = next.entries.map(entry => {const node = old.get(entry.id) || make('li'); node.dataset.entryId = entry.id; node.textContent = entry.text; return node;});
       logs.replaceChildren(...nodes);
     },
-    destroy() {if (destroyed) return; destroyed = true; root.remove();}
+    destroy() {if (destroyed) return; destroyed = true; disclosure?.destroy();root.remove();}
   };
 }

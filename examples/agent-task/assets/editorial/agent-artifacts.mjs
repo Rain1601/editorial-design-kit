@@ -1,3 +1,4 @@
+import {mountSelectionMotion,mountDetailsMotion,mountPresenceMotion} from './motion.mjs';
 /** Controlled artifacts: original content is never translated; downloads belong to the caller. */
 export function normalizeTaskArtifacts(model){
  if(!model||!Array.isArray(model.items))throw new TypeError('Artifacts items are required');
@@ -9,19 +10,24 @@ export function normalizeTaskArtifacts(model){
 function labelsCopy(labels={}){if(!labels||typeof labels!=='object')throw new TypeError('labels must be an object');for(const value of Object.values(labels))if(typeof value!=='string')throw new TypeError('Labels must be strings');return {...labels};}
 /** Level-two headings and paragraph counts are text structure, never task progress. */
 export function artifactStructure(content){if(typeof content!=='string')throw new TypeError('content must be a string');return content.split(/(?:^|\n)## /).slice(1).map(section=>{const [heading,...body]=section.split('\n');return {heading,count:body.join('\n').trim().split(/\n\s*\n/).filter(Boolean).length};});}
-export function mountTaskArtifacts(host,{prefix='',labels={},onAction=()=>{}}={}){
+export function mountTaskArtifacts(host,{prefix='',labels={},onAction=()=>{},motion=false}={}){
  if(!host?.ownerDocument||typeof prefix!=='string'||typeof onAction!=='function')throw new TypeError('Invalid artifacts options');
- let text=labelsCopy(labels),state=null,language='zh',rendered=null;const doc=host.ownerDocument,elements={},listeners=[],tabs=new Map();
+ if(typeof motion!=='boolean')throw new TypeError('motion must be boolean');
+ let text=labelsCopy(labels),state=null,language='zh',rendered=null,visible=false,lastSelected=null;const doc=host.ownerDocument,elements={},listeners=[],tabs=new Map();
  const wrapper=doc.createElement('div');wrapper.className='edk-agent-artifacts';host.append(wrapper);
  const node=(tag,id,parent=wrapper,className='')=>{const el=doc.createElement(tag);if(id){el.id=prefix+id;elements[id]=el;}if(className)el.className=className;parent.append(el);return el;};
  const bind=(el,event,fn)=>{el.addEventListener(event,fn);listeners.push(()=>el.removeEventListener(event,fn));};
  const labeled=[];const mark=(el,key)=>{labeled.push([el,key]);return el;};
  const empty=node('div','output-empty',wrapper,'empty');const icon=node('span',null,empty);icon.textContent='↳';icon.setAttribute('aria-hidden','true');mark(node('p',null,empty),'outputEmpty');mark(node('small',null,empty,'muted'),'outputHelp');
- const ready=node('div','output-ready');mark(node('p',null,ready,'muted small'),'originalNote');const switcher=node('div','artifact-switch',ready,'choice-switch');switcher.setAttribute('role','group');
+ const ready=node('div','output-ready');ready.hidden=true;mark(node('p',null,ready,'muted small'),'originalNote');const switcher=node('div','artifact-switch',ready,'choice-switch');switcher.setAttribute('role','group');
  const heading=node('div',null,ready,'artifact-heading');node('h3','artifact-title',heading);const download=mark(node('button','download',heading),'download');download.type='button';
  const preview=node('article','preview',ready);const structure=node('details','structure',ready);mark(node('summary',null,structure),'structure');mark(node('p',null,structure,'small muted'),'structureHelp');const chart=node('div','chart-switch',structure,'choice-switch');chart.setAttribute('role','group');
  const views=new Map();for(const [value,key] of [['bars','chart'],['table','data']]){const button=mark(node('button',null,chart),key);button.type='button';button.dataset.choice=value;views.set(value,button);bind(button,'click',()=>onAction({type:'artifact-view',value}));}
  const structureContent=node('div','structure-content',structure);
+ const motionMarker=motion?node('span',null,switcher,'edk-motion-marker'):null;if(motionMarker){motionMarker.hidden=true;motionMarker.setAttribute('aria-hidden','true');switcher.classList.add('edk-motion-rail');}
+ const selection=motion?mountSelectionMotion(switcher,motionMarker):null;
+ const structureMotion=motion?mountDetailsMotion(structure):null;
+ const presence=motion?mountPresenceMotion(ready):null;
  bind(download,'click',()=>{if(state?.selectedId!==null&&state?.selectedId)onAction({type:'download',id:state.selectedId});});
  function renderPreview(item){
   const signature=item?JSON.stringify([item.id,item.content]):null;if(signature===rendered)return;rendered=signature;preview.replaceChildren();if(!item)return;
@@ -42,8 +48,9 @@ export function mountTaskArtifacts(host,{prefix='',labels={},onAction=()=>{}}={}
   state=next;text=nextText;language=nextLanguage;labeled.forEach(([el,key])=>el.textContent=text[key]??'');switcher.setAttribute('aria-label',text.artifacts??'');chart.setAttribute('aria-label',text.structureView??'');
   const ids=new Set(next.items.map(item=>item.id));for(const [id,entry] of tabs)if(!ids.has(id)){entry.cleanup();entry.button.remove();tabs.delete(id);}
   next.items.forEach((item,index)=>{let entry=tabs.get(item.id);if(!entry){const button=doc.createElement('button');button.type='button';button.dataset.choice=item.id;const click=()=>onAction({type:'select-artifact',id:item.id});button.addEventListener('click',click);entry={button,cleanup:()=>button.removeEventListener('click',click)};tabs.set(item.id,entry);}entry.button.textContent=item.title;entry.button.setAttribute('aria-pressed',String(next.selectedId===item.id));if(switcher.children[index]!==entry.button)switcher.insertBefore(entry.button,switcher.children[index]??null);});
-  const item=next.items.find(value=>value.id===next.selectedId);empty.hidden=Boolean(item);ready.hidden=!item;elements['artifact-title'].textContent=item?.title??'';download.disabled=!item||next.busy;
+  const item=next.items.find(value=>value.id===next.selectedId);empty.hidden=Boolean(item);if(presence){if(visible!==Boolean(item)){visible=Boolean(item);presence.setVisible(visible);}}else ready.hidden=!item;elements['artifact-title'].textContent=item?.title??'';download.disabled=!item||next.busy;
+  if(selection){if(item){if(lastSelected!==item.id){selection.moveTo(tabs.get(item.id).button);lastSelected=item.id;}else selection.refresh();}else lastSelected=null;}
   views.forEach((button,value)=>button.setAttribute('aria-pressed',String(next.view===value)));renderPreview(item);renderStructure(item);
  }
- return {update,elements,destroy(){listeners.forEach(fn=>fn());tabs.forEach(entry=>entry.cleanup());wrapper.remove();}};
+ return {update,elements,destroy(){selection?.destroy();structureMotion?.destroy();presence?.destroy();listeners.forEach(fn=>fn());tabs.forEach(entry=>entry.cleanup());wrapper.remove();}};
 }

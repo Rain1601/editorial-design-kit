@@ -55,3 +55,27 @@ export function mountSelectionMotion(host,marker,{duration=180,reducedMotion=pre
   return control.run([{transform:previous?`translateX(${previous.left-rect.left}px) scaleX(${previous.width/rect.width})`:'none'},{transform:'none'}],opts,()=>{});
  },refresh,destroy(){observer?.disconnect();host.ownerDocument.defaultView.removeEventListener('resize',refresh);control.destroy();}};
 }
+
+/** Native details semantics with immediate logical state during a closing transition. */
+export function mountDetailsMotion(details,{onChange=()=>{},...motionOptions}={}){
+ if(details?.tagName!=='DETAILS'||typeof onChange!=='function')throw new TypeError('A details element and onChange are required');
+ const summary=[...details.children].find(el=>el.tagName==='SUMMARY');if(!summary)throw new TypeError('Details requires a summary');
+ const originalChildren=[...details.childNodes];const region=details.ownerDocument.createElement('div');region.className='edk-motion-details';
+ for(const child of [...details.childNodes])if(child!==summary)region.append(child);
+ details.append(region);let expanded=details.open,destroyed=false,revision=0;
+ region.hidden=!expanded;region.inert=!expanded;summary.setAttribute('aria-expanded',String(expanded));
+ let skipMotion=false;const motion=mountDisclosureMotion(region,{...motionOptions,reducedMotion:()=>skipMotion||(motionOptions.reducedMotion??preference)()});
+ async function setExpanded(next,{animate=true}={}){
+  if(typeof next!=='boolean')throw new TypeError('expanded must be boolean');if(destroyed)return false;
+  const token=++revision;expanded=next;summary.setAttribute('aria-expanded',String(next));
+  if(!next&&region.contains(details.ownerDocument.activeElement))summary.focus({preventScroll:true});
+  details.open=true;
+  // Restoration does not replay motion or transiently overwrite logical state.
+  skipMotion=!animate;const transition=motion.setExpanded(next);skipMotion=false;
+  const settled=await transition;if(settled&&token===revision&&!destroyed)details.open=next;
+  return settled;
+ }
+ const click=event=>{event.preventDefault();setExpanded(!expanded);onChange(expanded);};
+ summary.addEventListener('click',click);
+ return {getExpanded:()=>expanded,setExpanded,destroy(){if(destroyed)return;destroyed=true;revision++;summary.removeEventListener('click',click);motion.destroy();details.open=expanded;summary.removeAttribute('aria-expanded');for(const child of originalChildren)if(child.parentNode===details||child.parentNode===region)details.append(child);for(const child of [...region.childNodes])details.append(child);region.remove();}};
+}

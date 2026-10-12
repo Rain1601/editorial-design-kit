@@ -1,3 +1,4 @@
+import {mountPresenceMotion} from './motion.mjs';
 /** New requests require fresh selection and acknowledgement. IDs identify runtime gates. */
 export function normalizeTaskApproval(model) {
   if (!model || !['pending', 'approved', 'hidden'].includes(model.status)) throw new TypeError('Unknown approval status');
@@ -20,7 +21,7 @@ export function normalizeTaskApproval(model) {
   return {request, status: model.status, selectedId: model.selectedId, acknowledged: model.acknowledged};
 }
 
-export function mountTaskApproval(host, {prefix = '', labels, onAction = () => {}} = {}) {
+export function mountTaskApproval(host, {prefix = '', labels, onAction = () => {}, motion = false} = {}) {
   if (!host?.ownerDocument || typeof prefix !== 'string' || typeof onAction !== 'function') throw new TypeError('Invalid mount options');
   const validateLabels = value => {
     for (const key of ['decision', 'scope', 'approve', 'reject', 'chooseFirst', 'acknowledgeFirst', 'ready', 'approved']) if (typeof value?.[key] !== 'string') throw new TypeError(`labels.${key} must be a string`);
@@ -37,6 +38,8 @@ export function mountTaskApproval(host, {prefix = '', labels, onAction = () => {
   const actions = make('div', null, 'actions'), approve = make('button', 'approve', 'primary'), reject = make('button', 'reject');
   approve.type = reject.type = 'button'; approve.disabled = reject.disabled = true; actions.append(approve, reject);
   root.append(decision, title, description, fieldset, check, help, actions); host.append(root);
+  if(typeof motion!=='boolean')throw new TypeError('motion must be boolean');
+  const presence=motion?mountPresenceMotion(root):null;let visible=false;
   const inputs = new Map();
   const pending = () => !destroyed && model?.status === 'pending' && !!model.request;
   const emit = action => onAction({...action, requestId: model.request.id});
@@ -51,7 +54,11 @@ export function mountTaskApproval(host, {prefix = '', labels, onAction = () => {
       const next = normalizeTaskApproval(value), nextCopy = validateLabels(nextLabels);
       if (typeof language !== 'string') throw new TypeError('language must be a string');
       if (model && next.request?.id !== model.request?.id) {next.selectedId = null; next.acknowledged = false;}
-      model = next; copy = nextCopy; root.lang = language; root.hidden = model.status === 'hidden';
+      model = next; copy = nextCopy; root.lang = language;
+      const nextVisible=model.status!=='hidden';
+      if(presence){if(nextVisible!==visible){visible=nextVisible;presence.setVisible(visible);}else if(nextVisible)root.hidden=false;}else root.hidden=!nextVisible;
+      // Keep the departing copy visible while actions are already blocked by hidden state.
+      if(presence&&!nextVisible){ack.disabled=approve.disabled=reject.disabled=true;inputs.forEach(input=>input.disabled=true);return;}
       decision.textContent = copy.decision; legend.textContent = copy.scope; approve.textContent = copy.approve; reject.textContent = copy.reject;
       title.textContent = model.request?.title || ''; description.textContent = model.request?.description || ''; acknowledgement.textContent = model.request?.acknowledgement || '';
       const keep = new Set();
@@ -67,6 +74,6 @@ export function mountTaskApproval(host, {prefix = '', labels, onAction = () => {
       ack.checked = model.acknowledged; ack.disabled = !pending(); reject.disabled = !pending(); approve.disabled = !pending() || model.selectedId === null || !model.acknowledged;
       help.textContent = model.status === 'approved' ? copy.approved : model.status === 'hidden' ? '' : model.selectedId === null ? copy.chooseFirst : !model.acknowledged ? copy.acknowledgeFirst : copy.ready;
     },
-    destroy() {if (destroyed) return; destroyed = true; root.removeEventListener('change', change); approve.removeEventListener('click', accept); reject.removeEventListener('click', decline); root.remove(); inputs.clear();}
+    destroy() {if (destroyed) return; destroyed = true; presence?.destroy();root.removeEventListener('change', change); approve.removeEventListener('click', accept); reject.removeEventListener('click', decline); root.remove(); inputs.clear();}
   };
 }
